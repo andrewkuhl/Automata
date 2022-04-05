@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     {
         case 1://arg1 DFA
         {
-            cout << "[Main]: initializing DFA..." << endl;
+            cout << "[Main]: initializing DFA.." << endl;
             DFA *dfa = new DFA(argv);
             break;
         }

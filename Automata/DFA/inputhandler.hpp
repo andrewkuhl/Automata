@@ -10,7 +10,8 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
-
+#include <string>
+using namespace std;
 struct Transition{
     char e;
     char Qs, Qf;
@@ -18,16 +19,15 @@ struct Transition{
 class InputHandler {
     
     FILE *fp;
-    std::vector<char> buffer;
     
 public:
     InputHandler(const char * argv[]);
     ~InputHandler();
-    char* getQ();
-    char* getE();
+    vector<string> getQ();
+    vector<string> getE();
     Transition* getd();
-    char getq0();
-    char* getF();
+    string getq0();
+    vector<string> getF();
     
 };
 

@@ -13,13 +13,13 @@
 class DFA {
     
     struct Controller{
-        char* Q;
-        char* E; //dynamic alphabet
+        vector<string> Q;
+        vector<string> E; //dynamic alphabet
         Transition* d;
-        char q0;
-        char* F;
+        string q0;
+        vector<string> F;
         
-        Controller(){std::cout<<"[Controller]: initialized" <<std::endl;}
+        Controller(){cout<<"[Controller]: initialized" <<endl;}
     };
     
     InputHandler* inhandler;

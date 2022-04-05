@@ -11,18 +11,21 @@ using namespace std;
 
 InputHandler::InputHandler(const char * argv[])
 {
-    std::cout << "[InputHandler]: initialized" << std::endl;
-    std::cout << "[InputHandler]: opening input file" << std::endl;
+    cout << "[InputHandler]: initialized" << endl;
+    cout << "[InputHandler]: opening input file.." << endl;
     fp = nullptr; //null ptr for check
     fp = freopen(argv[2], "r", stdin);
     if (fp == nullptr)
     {
-        std::cout << "[InputHandler][ERROR]: couldn't open input file" << std::endl;
+        cout << "[InputHandler][ERROR]: couldn't open input file"
+        << endl;//bad path
         exit(1);
     }
     else
     {
-        std::cout << "[InputHandler]: opened input file" << std::endl;
+        cout << "[InputHandler]: opened input file" << endl;
+        cout << "[InputHandler]: ready.." << endl;
+        //opened file
     }
     
 }
@@ -30,24 +33,79 @@ InputHandler::~InputHandler()
 {
     delete fp;
 }
-char* InputHandler::getQ()
+vector<string> InputHandler::getQ()
 {
-    return nullptr;
+    vector<string> Qlist;//list of states
+    char c;
+    for(int j = 0; j < 2; j ++){
+        c = getc(fp);// burn Q and {
+    }
+    string ch = "";
+    do{
+        c = getc(fp);
+        switch(c){
+            case ' ':
+            case '\n':
+            case '}':
+            {
+                if(ch != ""){
+                    Qlist.push_back(ch);
+                    ch = "";
+                }
+                break;
+            }
+            default:
+            {
+                ch.push_back(c);
+                break;
+            }
+        }
+    }while(c != '}');
+    cout << "[InputHandler]: sending Q" << endl;
+    return Qlist;
 }
 
-char* InputHandler::getE()
+vector<string> InputHandler::getE()
 {
-    return nullptr;
+    vector<string> Elist;//list of states
+    char c;
+    for(int j = 0; j < 3; j ++){
+        c = getc(fp);// burn E and {
+    }
+    string ch = "";
+    do{
+        c = getc(fp);
+        switch(c){
+            case ' ':
+            case '\n':
+            case '}':
+            {
+                if(ch != ""){
+                    Elist.push_back(ch);
+                    ch = "";
+                }
+                break;
+            }
+            default:
+            {
+                ch.push_back(c);
+                break;
+            }
+        }
+    }while(c != '}');
+    cout << "[InputHandler]: sending E" << endl;
+    return Elist;
 }
 Transition* InputHandler::getd()
 {
     return nullptr;
 }
-char InputHandler::getq0()
+string InputHandler::getq0()
 {
-    return ' ';
+    return "";
 }
-char* InputHandler::getF()
+vector<string> InputHandler::getF()
 {
-    return nullptr;
+    vector<string> a;
+    return a;
 }
