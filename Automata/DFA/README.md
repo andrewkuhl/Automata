@@ -1,4 +1,4 @@
-# Deterministic Finite Automata
+# Deterministic Finite Automata  [back](https://github.com/andrewkuhl/Automata)
 
 ```
 DFA(Q,E,d,q0,F) where:
