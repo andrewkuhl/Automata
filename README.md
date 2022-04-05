@@ -3,9 +3,9 @@
 
 
 ### [Deterministic Finite Automata](Automata/DFA)
-Nondeterministic Finite Automata
-Context Free Grammar
-Pushdown Automata
-Deterministic Turing Machine
-Nondeterministic Turing Machine
+### Nondeterministic Finite Automata
+### Context Free Grammar
+### Pushdown Automata
+### Deterministic Turing Machine
+### Nondeterministic Turing Machine
 
