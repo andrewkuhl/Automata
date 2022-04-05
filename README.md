@@ -2,7 +2,7 @@
 **using sipser as a reference**
 
 
-#[Deterministic Finite Automata](Automata/DFA)
+###[Deterministic Finite Automata](Automata/DFA)
 Nondeterministic Finite Automata
 Context Free Grammar
 Pushdown Automata
