@@ -12,9 +12,9 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
     
-    if(argc < 2)//no argument
+    if(argc < 3)//no argument
     {
-        cout << "[Main][Error]: no argument" << endl;
+        cout << "[Main][Error]: missing argument(s)" << endl;
         return 1;
     }
     

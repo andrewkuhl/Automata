@@ -13,6 +13,7 @@ InputHandler::InputHandler(const char * argv[])
 {
     std::cout << "[InputHandler]: initialized" << std::endl;
     std::cout << "[InputHandler]: opening input file" << std::endl;
+    fp = nullptr; //null ptr for check
     fp = freopen(argv[2], "r", stdin);
     if (fp == nullptr)
     {
