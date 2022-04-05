@@ -8,26 +8,26 @@
 #ifndef dfa_hpp
 #define dfa_hpp
 
+#include "inputhandler.hpp"
+
 class DFA {
     
-    struct Transition{
-        char e;
-        char Qs, Qf;
-    };
-    
-    struct Control{
+    struct Controller{
         char* Q;
         char* E; //dynamic alphabet
         Transition* d;
         char q0;
         char* F;
+        
+        Controller(){std::cout<<"[Controller]: initialized" <<std::endl;}
     };
     
-    Control* control;
+    InputHandler* inhandler;
+    Controller* controller;
     
 public:
     
-    DFA();
+    DFA(const char * argv[]);
     ~DFA();
 };
 
