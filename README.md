@@ -1,2 +1,2 @@
 # Automata
-[Deterministic Finite Automata](tree/main/Automata/DFA)
+[Deterministic Finite Automata](Automata/DFA)
