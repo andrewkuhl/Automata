@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include "dfa.hpp"
 
 int main(int argc, const char * argv[]) {
     // insert code here...
