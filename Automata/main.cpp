@@ -20,21 +20,24 @@ int main(int argc, const char * argv[]) {
     
     int m = atoi(argv[1]);//get argument as int
     
-    switch(m)//switch(arg)
+    switch(m)//switch( machine type )
     {
         case 1://arg1 DFA
         {
             cout << "[Main]: initializing DFA.." << endl;
-            DFA *dfa = new DFA(argv);
+            
+            DFA *dfa = new DFA(argv); //DFA constructor
+            
             cout << "[Main]: running DFA.." << endl;
-            if(dfa->run())
-                cout << "[Main]: DFA accepts input" <<endl;
+            
+            if(dfa->run())// DFA run()
+                cout << "[Main]: DFA accepts input" <<endl;//if run returns true accept
             else
-                cout << "[Main]: DFA rejects input" <<endl;
+                cout << "[Main]: DFA rejects input" <<endl;//else reject
             break;
         }
         default:
-            cout << "[Main][Error]: wrong argument" << endl; //other arg
+            cout << "[Main][Error]: wrong argument" << endl; //wrong arg
     }
         
     return 0;

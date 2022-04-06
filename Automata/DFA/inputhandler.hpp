@@ -12,27 +12,31 @@
 #include <vector>
 #include <string>
 using namespace std;
-struct Transition{
+
+struct Transition{ //transition obj
     string e, Qs, Qf;
 };
+
 class InputHandler {
     
-    FILE *ms;
-    FILE *inf;
-    const char **args;
-    vector<string> input;
+    FILE *ms; //machine specification file ptr
+    FILE *inf; //input file ptr
+    
+    const char **args; //argument copy ptr
+    vector<string> input; //input vector
     
 public:
     InputHandler(const char * argv[]); //open spec file
     ~InputHandler();
-    //get specifications
+    
+    //return specifications
     vector<string> getQ();
     vector<string> getE();
     vector<Transition> getd();
     string getq0();
     vector<string> getF();
     
-    void getINF(); //open input file fill input vec
+    void getINF(); //open input file load input vec
     string getInput(); //return next input
 };
 
