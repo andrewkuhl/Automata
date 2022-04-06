@@ -151,7 +151,7 @@ DFA::~DFA() //destructor
     delete controller;
     delete inhandler;
 }
-void DFA::run()
+bool DFA::run()
 {
     
     cout << "[DFA]: running" << endl;
@@ -189,25 +189,18 @@ void DFA::run()
         {
             in = "";
             cout << "[DFA]: NO TRANSITION" <<endl;
+            return false;
         }
     }
     
-    bool acc = false;
     for(int i = 0; i < controller->F.size(); i++)
     {
         if(currState == controller->F.at(i))
         {
-            acc = true;
+            return true;
         }
     }
+    return false;
     
-    if(acc)
-    {
-        cout << "[DFA]: ACCEPT" <<endl;
-    }
-    else
-    {
-        cout << "[DFA]: REJECT" <<endl;
-    }
     
 }

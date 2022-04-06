@@ -29,7 +29,7 @@ public:
     
     DFA(const char * argv[]);
     ~DFA();
-    void run();
+    bool run();
 };
 
 #endif /* dfa_hpp */

@@ -27,7 +27,10 @@ int main(int argc, const char * argv[]) {
             cout << "[Main]: initializing DFA.." << endl;
             DFA *dfa = new DFA(argv);
             cout << "[Main]: running DFA.." << endl;
-            dfa->run();
+            if(dfa->run())
+                cout << "[Main]: DFA accepts input" <<endl;
+            else
+                cout << "[Main]: DFA rejects input" <<endl;
             break;
         }
         default:
