@@ -17,17 +17,23 @@ struct Transition{
 };
 class InputHandler {
     
-    FILE *fp;
+    FILE *ms;
+    FILE *inf;
+    const char **args;
+    vector<string> input;
     
 public:
-    InputHandler(const char * argv[]);
+    InputHandler(const char * argv[]); //open spec file
     ~InputHandler();
+    //get specifications
     vector<string> getQ();
     vector<string> getE();
     vector<Transition> getd();
     string getq0();
     vector<string> getF();
     
+    void getINF(); //open input file fill input vec
+    string getInput(); //return next input
 };
 
 #endif /* inputhandler_hpp */

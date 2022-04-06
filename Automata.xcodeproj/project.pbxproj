@@ -517,7 +517,7 @@
 		0DECAD9727FCEDA0008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0DECAD9827FCEDA0008572D5 /* dfa.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dfa.hpp; sourceTree = "<group>"; };
 		0DECAD9927FCEDA0008572D5 /* inputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = inputhandler.hpp; sourceTree = "<group>"; };
-		0DECAD9A27FCEDA0008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECAD9A27FCEDA0008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
 		0DECAD9B27FCEDA0008572D5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0DECADA127FCEDA0008572D5 /* TARGET@v11_hash=7cc8f15779a4ebadaf64197088636b15-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=7cc8f15779a4ebadaf64197088636b15-json"; sourceTree = "<group>"; };
 		0DECADA227FCEDA0008572D5 /* TARGET@v11_hash=e65a5fff87d2ca5b606770d82ca0f80e-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=e65a5fff87d2ca5b606770d82ca0f80e-json"; sourceTree = "<group>"; };
@@ -537,6 +537,7 @@
 		0DECADC127FCEDA0008572D5 /* lock.mdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.mdb; sourceTree = "<group>"; };
 		0DECADC227FCEDA0008572D5 /* data.mdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.mdb; sourceTree = "<group>"; };
 		0DECADC527FCEDA0008572D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
+		0DECADC927FE0EFA008572D5 /* input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4185,7 +4186,8 @@
 			isa = PBXGroup;
 			children = (
 				0DECAD9427FCEDA0008572D5 /* DFA */,
-				0DECAD9A27FCEDA0008572D5 /* input.txt */,
+				0DECAD9A27FCEDA0008572D5 /* machspec.txt */,
+				0DECADC927FE0EFA008572D5 /* input.txt */,
 				0DECAD9B27FCEDA0008572D5 /* main.cpp */,
 			);
 			path = Automata;

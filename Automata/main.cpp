@@ -12,7 +12,7 @@ using namespace std;
 int main(int argc, const char * argv[]) {
 
     
-    if(argc < 3)//no argument
+    if(argc < 4)//no argument
     {
         cout << "[Main][Error]: missing argument(s)" << endl;
         return 1;
@@ -26,6 +26,8 @@ int main(int argc, const char * argv[]) {
         {
             cout << "[Main]: initializing DFA.." << endl;
             DFA *dfa = new DFA(argv);
+            cout << "[Main]: running DFA.." << endl;
+            dfa->run();
             break;
         }
         default:

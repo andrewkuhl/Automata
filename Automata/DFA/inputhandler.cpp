@@ -12,18 +12,19 @@ using namespace std;
 InputHandler::InputHandler(const char * argv[])
 {
     cout << "[InputHandler]: initialized" << endl;
-    cout << "[InputHandler]: opening input file.." << endl;
-    fp = nullptr; //null ptr for check
-    fp = freopen(argv[2], "r", stdin);
-    if (fp == nullptr)
+    cout << "[InputHandler]: opening machine specifications.." << endl;
+    args = argv;
+    ms = nullptr; //null ptr for check
+    ms = freopen(args[2], "r", stdin);
+    if (ms == nullptr)
     {
-        cout << "[InputHandler][ERROR]: couldn't open input file"
+        cout << "[InputHandler][ERROR]: couldn't open specifications"
         << endl;//bad path
         exit(1);
     }
     else
     {
-        cout << "[InputHandler]: opened input file" << endl;
+        cout << "[InputHandler]: opened specifications" << endl;
         cout << "[InputHandler]: ready.." << endl;
         //opened file
     }
@@ -31,18 +32,18 @@ InputHandler::InputHandler(const char * argv[])
 }
 InputHandler::~InputHandler()
 {
-    delete fp;
+    delete ms;
 }
 vector<string> InputHandler::getQ()
 {
     vector<string> Qlist;//list of states
     char c;
     for(int j = 0; j < 2; j ++){
-        c = getc(fp);// burn Q and {
+        c = getc(ms);// burn Q and {
     }
     string ch = "";
     do{
-        c = getc(fp);
+        c = getc(ms);
         switch(c){
             case '\n':
                 break;
@@ -71,11 +72,11 @@ vector<string> InputHandler::getE()
     vector<string> Elist;//list of states
     char c;
     for(int j = 0; j < 3; j ++){
-        c = getc(fp);// burn E and {
+        c = getc(ms);// burn E and {
     }
     string ch = "";
     do{
-        c = getc(fp);
+        c = getc(ms);
         switch(c){
             case '\n':
                 break;
@@ -103,12 +104,12 @@ vector<Transition> InputHandler::getd()
     vector<Transition> T_;//list of states
     char c;
     for(int j = 0; j < 4; j ++){
-        c = getc(fp);// burn \n E and { \n
+        c = getc(ms);// burn \n E and { \n
     }
     string ch = "";
     vector<string> tmp;
     do{
-        c = getc(fp);
+        c = getc(ms);
         switch(c){
             case '\n':
                 break;
@@ -154,11 +155,11 @@ string InputHandler::getq0()
 {
     char c;
     for(int j = 0; j < 4; j ++){
-        c = getc(fp);// burn \n E and {
+        c = getc(ms);// burn \n E and {
     }
     string q0_ = "";//start state
     do{
-        c = getc(fp);
+        c = getc(ms);
         switch(c){
             case '\n':
                 break;
@@ -185,11 +186,11 @@ vector<string> InputHandler::getF()
     vector<string> Flist;//list of states
     char c;
     for(int j = 0; j < 3; j ++){
-        c = getc(fp);// burn E and {
+        c = getc(ms);// burn E and {
     }
     string ch = "";
     do{
-        c = getc(fp);
+        c = getc(ms);
         switch(c){
             case '\n':
                 break;
@@ -211,4 +212,59 @@ vector<string> InputHandler::getF()
     }while(c != '}');
     cout << "[InputHandler]: sending F" << endl;
     return Flist;
+}
+void InputHandler::getINF()
+{
+    cout << "[InputHandler]: opening input.." << endl;
+    inf = nullptr; //null ptr for check
+    inf = freopen(args[3], "r", stdin);
+    if (inf == nullptr)
+    {
+        cout << "[InputHandler][ERROR]: couldn't open input"
+        << endl;//bad path
+        exit(1);
+    }
+    else
+    {
+        cout << "[InputHandler]: opened input" << endl;
+        cout << "[InputHandler]: ready.." << endl;
+        //opened file
+    }
+    
+    char c;
+    string ch = "";
+    do{
+        c = getc(inf);
+        switch(c){
+            case '\n':
+                break;
+            case ';':
+            case ' ':
+            {
+                if(ch != ""){
+                    input.push_back(ch);
+                    ch = "";
+                }
+                break;
+            }
+            default:
+            {
+                ch.push_back(c);
+                break;
+            }
+        }
+    }while(c != ';');
+}
+string InputHandler::getInput()
+{
+    if(input.empty())
+    {
+        return "";
+    }
+    else
+    {
+        string a = input.front();
+        input.erase(input.begin());
+        return a;
+    }
 }

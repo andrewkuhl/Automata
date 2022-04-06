@@ -29,6 +29,7 @@ public:
     
     DFA(const char * argv[]);
     ~DFA();
+    void run();
 };
 
 #endif /* dfa_hpp */
