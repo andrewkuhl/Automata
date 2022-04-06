@@ -13,8 +13,7 @@
 #include <string>
 using namespace std;
 struct Transition{
-    char e;
-    char Qs, Qf;
+    string e, Qs, Qf;
 };
 class InputHandler {
     
@@ -25,7 +24,7 @@ public:
     ~InputHandler();
     vector<string> getQ();
     vector<string> getE();
-    Transition* getd();
+    vector<Transition> getd();
     string getq0();
     vector<string> getF();
     

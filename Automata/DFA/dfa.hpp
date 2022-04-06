@@ -15,7 +15,7 @@ class DFA {
     struct Controller{
         vector<string> Q;
         vector<string> E; //dynamic alphabet
-        Transition* d;
+        vector<Transition> d;
         string q0;
         vector<string> F;
         

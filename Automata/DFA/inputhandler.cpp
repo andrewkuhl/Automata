@@ -44,8 +44,9 @@ vector<string> InputHandler::getQ()
     do{
         c = getc(fp);
         switch(c){
-            case ' ':
             case '\n':
+                break;
+            case ' ':
             case '}':
             {
                 if(ch != ""){
@@ -76,9 +77,10 @@ vector<string> InputHandler::getE()
     do{
         c = getc(fp);
         switch(c){
-            case ' ':
             case '\n':
+                break;
             case '}':
+            case ' ':
             {
                 if(ch != ""){
                     Elist.push_back(ch);
@@ -96,16 +98,117 @@ vector<string> InputHandler::getE()
     cout << "[InputHandler]: sending E" << endl;
     return Elist;
 }
-Transition* InputHandler::getd()
+vector<Transition> InputHandler::getd()
 {
-    return nullptr;
+    vector<Transition> T_;//list of states
+    char c;
+    for(int j = 0; j < 4; j ++){
+        c = getc(fp);// burn \n E and { \n
+    }
+    string ch = "";
+    vector<string> tmp;
+    do{
+        c = getc(fp);
+        switch(c){
+            case '\n':
+                break;
+            case ',':
+            case '}':
+            {
+                tmp.push_back(ch);
+                ch = "";
+                if(tmp.size() > 2){
+                    Transition t;
+                    t.Qs = tmp.at(0);
+                    t.e = tmp.at(1);
+                    t.Qf = tmp.at(2);
+                    T_.push_back(t);
+                    tmp.clear();
+                }
+                else
+                {
+                    cout << "[InputHandler][ERROR]: invalid transition" << endl;
+                    exit(1);
+                }
+                break;
+            }
+            case ' ':
+            {
+                tmp.push_back(ch);
+                ch = "";
+                break;
+            }
+            default:
+            {
+                ch.push_back(c);
+                break;
+            }
+        }
+    }while(c != '}');
+    
+    
+    cout << "[InputHandler]: sending d" << endl;
+    return T_;
 }
 string InputHandler::getq0()
 {
-    return "";
+    char c;
+    for(int j = 0; j < 4; j ++){
+        c = getc(fp);// burn \n E and {
+    }
+    string q0_ = "";//start state
+    do{
+        c = getc(fp);
+        switch(c){
+            case '\n':
+                break;
+            case '}':
+            case ' ':
+            {
+                if(q0_ != ""){
+                  
+                }
+                break;
+            }
+            default:
+            {
+                q0_.push_back(c);
+                break;
+            }
+        }
+    }while(c != '}');
+    cout << "[InputHandler]: sending q0" << endl;
+    return q0_;
 }
 vector<string> InputHandler::getF()
 {
-    vector<string> a;
-    return a;
+    vector<string> Flist;//list of states
+    char c;
+    for(int j = 0; j < 3; j ++){
+        c = getc(fp);// burn E and {
+    }
+    string ch = "";
+    do{
+        c = getc(fp);
+        switch(c){
+            case '\n':
+                break;
+            case '}':
+            case ' ':
+            {
+                if(ch != ""){
+                    Flist.push_back(ch);
+                    ch = "";
+                }
+                break;
+            }
+            default:
+            {
+                ch.push_back(c);
+                break;
+            }
+        }
+    }while(c != '}');
+    cout << "[InputHandler]: sending F" << endl;
+    return Flist;
 }
