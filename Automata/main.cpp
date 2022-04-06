@@ -31,9 +31,9 @@ int main(int argc, const char * argv[]) {
             cout << "[Main]: running DFA.." << endl;
             
             if(dfa->run())// DFA run()
-                cout << "[Main]: DFA accepts input" <<endl;//if run returns true accept
+                cout << "[Main]: DFA accepts on input" <<endl;//if run returns true accept
             else
-                cout << "[Main]: DFA rejects input" <<endl;//else reject
+                cout << "[Main]: DFA rejects on input" <<endl;//else reject
             break;
         }
         default:
