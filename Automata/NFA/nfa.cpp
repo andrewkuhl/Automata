@@ -6,6 +6,7 @@
 
 #include "nfa.hpp"
 #include <iostream>
+
  
 using namespace std;
 
@@ -138,46 +139,81 @@ bool NFA::run()
     cout << "[NFA]: running" << endl;
     inhandler->getINF(); //loading input file
     cout << "[NFA]: .." << endl;
-    string currState = controller->q0; //set current state to start state
-    
-    string nextState;
     
     string in = inhandler->getInput(); //get input
-    while(!in.empty()) //while input isnt empty ""
+    
+    //create thread that runs compute( q0, input, transitions)
+    future<bool> thread = async(launch::async, &NFA::machine, this,  controller->q0, inhandler->input, vector<NFATransition>());
+    
+    return thread.get(); //return output
+}
+bool NFA::machine(string currState_,
+         vector<string> input_,
+         vector<NFATransition> transitions_)
+{
+    
+    string nextState = "";
+    while(!input_.empty()) //while input isnt empty ""
     {
-        cout << "[NFA]: CURRENT STATE: " << currState <<endl;
-        cout << "[NFA]: READ: " << in <<endl;
+        string in = "";
+        in = input_.at(0);
+        input_.erase(input_.begin());
         
         bool tran = false;
+        vector<NFATransition> transvec;
         for(int i = 0; i < controller->d.size(); i++) //checks transition on
         {
             NFATransition tmp = controller->d.at(i);
-            if(tmp.Qs == currState && tmp.e == in) //current state and input
+            if(tmp.Qs == currState_ && tmp.e == in) //current state and input
             {
                 tran = true; //if theres a transition
-                cout << "[NFA]: TRANSITION: " << tmp.Qs << " " << tmp.e << " -> " << tmp.Qf <<endl;
-                nextState = tmp.Qf;
+                transvec.push_back(tmp);
+                
             }
         }
         
         if(tran)
         {
-            currState = nextState; //transition if theres transition
-            in = inhandler->getInput();
-            cout << "[NFA]: .." <<endl;
+            if(transvec.size() > 1)//more than 1 transition
+            {
+                for(int k = 0; k < transvec.size(); k++)
+                {
+                    //for first elemnts in vector
+                    if(k!=0)
+                        transitions_.pop_back();
+                    transitions_.push_back(transvec.at(k));
+                    //start a thread on transition k
+                    future<bool> t = async(launch::async, &NFA::machine, this,  transvec.at(k).Qf, input_, transitions_);
+                    if(t.get()){
+                        return true; //if it accepted return true;
+                    }//else continue
+                    
+                }
+            }
+            else //1 transition
+            {
+                transitions_.push_back(transvec.back());
+                nextState = transvec.back().Qf;
+                currState_ = nextState; //transition if theres transition
+                in = inhandler->getInput();
+            }
         }
         else
         {
             in = ""; //else reject
-            cout << "[NFA]: NO TRANSITION" <<endl;
             return false;
         }
-    }
+    }//end while
     
     for(int i = 0; i < controller->F.size(); i++)
     {
-        if(currState == controller->F.at(i))
+        if(currState_ == controller->F.at(i))
         {
+            for(int j = 0; j < transitions_.size(); j++)
+            {
+                cout << "[NFA]: TRANSITION: " << transitions_.at(j).Qs << " " << transitions_.at(j).e << " -> " << transitions_.at(j).Qf <<endl;
+                cout << "[NFA]: .." << endl;
+            }
             return true;  //if end state is final accept
         }
     }

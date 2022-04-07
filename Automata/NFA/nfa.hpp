@@ -9,6 +9,7 @@
 #define nfa_hpp
 
 #include "nfainputhandler.hpp"
+#include <future>
 
 class NFA {
     
@@ -30,6 +31,9 @@ public:
     NFA(const char * argv[]);
     ~NFA();
     bool run(); //run function
+    bool machine(string currState_,
+             vector<string> input_,
+             vector<NFATransition> transitions_);
 };
 
 #endif /* nfa_hpp */
