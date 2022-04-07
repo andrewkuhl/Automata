@@ -1,8 +1,8 @@
 # Automata Theory Implementation
 ### [Main]: choose machine..
-### [DFA].. > [ [DFA DIR](Automata/DFA) ]
-### [NFA]..<\t>[ [NFA DIR](Automata/NFA) ]
-### [CFG]..<\t>[ [CFG DIR](Automata/CFG) ]
-### [..]..<\t>[..]
+### [DFA]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [DFA DIR](Automata/DFA) ]
+### [NFA]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [NFA DIR](Automata/NFA) ]
+### [CFG]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [CFG DIR](Automata/CFG) ]
+### [..]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[..]
 
 
