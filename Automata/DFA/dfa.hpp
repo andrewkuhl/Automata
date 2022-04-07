@@ -8,7 +8,7 @@
 #ifndef dfa_hpp
 #define dfa_hpp
 
-#include "inputhandler.hpp"
+#include "dfainputhandler.hpp"
 
 class DFA {
     
@@ -16,14 +16,14 @@ class DFA {
         
         vector<string> Q; //set of states
         vector<string> E; //set of input characters
-        vector<Transition> d; //set of transitions
+        vector<DFATransition> d; //set of transitions
         string q0; //start state
         vector<string> F; //set of final states
         
         Controller(){cout<<"[Controller]: initialized" <<endl;}
     }*controller; //controller object
     
-    InputHandler* inhandler; //input handler obj
+    DFAInputHandler* inhandler; //input handler obj
     
 public:
     

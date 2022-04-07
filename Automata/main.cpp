@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "dfa.hpp"
+#include "nfa.hpp"
 using namespace std;
 
 void runDFA(const char * argv[]){
@@ -19,10 +20,10 @@ void runDFA(const char * argv[]){
     cout << "[Main]: run DFA? [y/n]  ";
     string inp;
     cin >> inp;
-    cout << endl;
     if(inp == "y")
     {
         do{
+            cout << endl;
             cout << "[Main]: running DFA.." << endl;
             if(dfa->run())// DFA run()
                 cout << "[Main]: DFA accepts on input" <<endl;//if run returns true accept
@@ -30,7 +31,33 @@ void runDFA(const char * argv[]){
                 cout << "[Main]: DFA rejects on input" <<endl;//else reject
             
             cout << "[Main]: .." << endl;
-            cout << "[Main]: run DFA again? [y/n]";
+            cout << "[Main]: run DFA again? [y/n]  ";
+            cin >> inp;
+        }while(inp == "y");
+    }
+}
+
+void runNFA(const char * argv[]){
+    cout << "[Main]: initializing NFA.." << endl;
+    
+    NFA *nfa = new NFA(argv); //NFA constructor
+    
+    cin.clear();
+    cout << "[Main]: run NFA? [y/n]  ";
+    string inp;
+    cin >> inp;
+    if(inp == "y")
+    {
+        do{
+            cout << endl;
+            cout << "[Main]: running NFA.." << endl;
+            if(nfa->run())// NFA run()
+                cout << "[Main]: NFA accepts on input" <<endl;//if run returns true accept
+            else
+                cout << "[Main]: NFA rejects on input" <<endl;//else reject
+            
+            cout << "[Main]: .." << endl;
+            cout << "[Main]: run NFA again? [y/n]  ";
             cin >> inp;
         }while(inp == "y");
     }
@@ -58,6 +85,11 @@ int main(int argc, const char * argv[]) {
         case 1://1 DFA
         {
             runDFA(argv);
+            break;
+        }
+        case 2://2 NFA
+        {
+            runNFA(argv);
             break;
         }
         default:

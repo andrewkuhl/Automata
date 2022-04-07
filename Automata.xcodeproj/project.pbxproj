@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DECADC627FCEDA0008572D5 /* inputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAD9527FCEDA0008572D5 /* inputhandler.cpp */; };
+		0DECADC627FCEDA0008572D5 /* dfainputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAD9527FCEDA0008572D5 /* dfainputhandler.cpp */; };
 		0DECADC727FCEDA0008572D5 /* dfa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAD9627FCEDA0008572D5 /* dfa.cpp */; };
 		0DECADC827FCEDA0008572D5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAD9B27FCEDA0008572D5 /* main.cpp */; };
+		0DECADDE27FEC9EF008572D5 /* nfainputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADD727FEC9EE008572D5 /* nfainputhandler.cpp */; };
+		0DECADDF27FEC9EF008572D5 /* nfa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADDB27FEC9EE008572D5 /* nfa.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -512,12 +514,11 @@
 		0DECAD8F27FCEDA0008572D5 /* metadata.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = metadata.plist; sourceTree = "<group>"; };
 		0DECAD9127FCEDA0008572D5 /* Session.modulevalidation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Session.modulevalidation; sourceTree = "<group>"; };
 		0DECAD9227FCEDA0008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0DECAD9527FCEDA0008572D5 /* inputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inputhandler.cpp; sourceTree = "<group>"; };
+		0DECAD9527FCEDA0008572D5 /* dfainputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dfainputhandler.cpp; sourceTree = "<group>"; };
 		0DECAD9627FCEDA0008572D5 /* dfa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dfa.cpp; sourceTree = "<group>"; };
 		0DECAD9727FCEDA0008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0DECAD9827FCEDA0008572D5 /* dfa.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dfa.hpp; sourceTree = "<group>"; };
-		0DECAD9927FCEDA0008572D5 /* inputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = inputhandler.hpp; sourceTree = "<group>"; };
-		0DECAD9A27FCEDA0008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
+		0DECAD9927FCEDA0008572D5 /* dfainputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dfainputhandler.hpp; sourceTree = "<group>"; };
 		0DECAD9B27FCEDA0008572D5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0DECADA127FCEDA0008572D5 /* TARGET@v11_hash=7cc8f15779a4ebadaf64197088636b15-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=7cc8f15779a4ebadaf64197088636b15-json"; sourceTree = "<group>"; };
 		0DECADA227FCEDA0008572D5 /* TARGET@v11_hash=e65a5fff87d2ca5b606770d82ca0f80e-json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TARGET@v11_hash=e65a5fff87d2ca5b606770d82ca0f80e-json"; sourceTree = "<group>"; };
@@ -537,7 +538,15 @@
 		0DECADC127FCEDA0008572D5 /* lock.mdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = lock.mdb; sourceTree = "<group>"; };
 		0DECADC227FCEDA0008572D5 /* data.mdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.mdb; sourceTree = "<group>"; };
 		0DECADC527FCEDA0008572D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
-		0DECADC927FE0EFA008572D5 /* input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECADD427FEC6E5008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECADD527FEC6E5008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
+		0DECADD727FEC9EE008572D5 /* nfainputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfainputhandler.cpp; sourceTree = "<group>"; };
+		0DECADD827FEC9EE008572D5 /* nfa.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = nfa.hpp; sourceTree = "<group>"; };
+		0DECADD927FEC9EE008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0DECADDA27FEC9EE008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECADDB27FEC9EE008572D5 /* nfa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nfa.cpp; sourceTree = "<group>"; };
+		0DECADDC27FEC9EE008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
+		0DECADDD27FEC9EE008572D5 /* nfainputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = nfainputhandler.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4185,9 +4194,8 @@
 		0DECAD9327FCEDA0008572D5 /* Automata */ = {
 			isa = PBXGroup;
 			children = (
+				0DECADD627FEC9EE008572D5 /* NFA */,
 				0DECAD9427FCEDA0008572D5 /* DFA */,
-				0DECAD9A27FCEDA0008572D5 /* machspec.txt */,
-				0DECADC927FE0EFA008572D5 /* input.txt */,
 				0DECAD9B27FCEDA0008572D5 /* main.cpp */,
 			);
 			path = Automata;
@@ -4196,11 +4204,13 @@
 		0DECAD9427FCEDA0008572D5 /* DFA */ = {
 			isa = PBXGroup;
 			children = (
-				0DECAD9527FCEDA0008572D5 /* inputhandler.cpp */,
+				0DECADD427FEC6E5008572D5 /* input.txt */,
+				0DECADD527FEC6E5008572D5 /* machspec.txt */,
+				0DECAD9527FCEDA0008572D5 /* dfainputhandler.cpp */,
 				0DECAD9627FCEDA0008572D5 /* dfa.cpp */,
 				0DECAD9727FCEDA0008572D5 /* README.md */,
 				0DECAD9827FCEDA0008572D5 /* dfa.hpp */,
-				0DECAD9927FCEDA0008572D5 /* inputhandler.hpp */,
+				0DECAD9927FCEDA0008572D5 /* dfainputhandler.hpp */,
 			);
 			path = DFA;
 			sourceTree = "<group>";
@@ -4414,6 +4424,20 @@
 			path = "MacOSX12.3.sdk (21E226)";
 			sourceTree = "<group>";
 		};
+		0DECADD627FEC9EE008572D5 /* NFA */ = {
+			isa = PBXGroup;
+			children = (
+				0DECADD727FEC9EE008572D5 /* nfainputhandler.cpp */,
+				0DECADD827FEC9EE008572D5 /* nfa.hpp */,
+				0DECADD927FEC9EE008572D5 /* README.md */,
+				0DECADDA27FEC9EE008572D5 /* input.txt */,
+				0DECADDB27FEC9EE008572D5 /* nfa.cpp */,
+				0DECADDC27FEC9EE008572D5 /* machspec.txt */,
+				0DECADDD27FEC9EE008572D5 /* nfainputhandler.hpp */,
+			);
+			path = NFA;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4471,9 +4495,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DECADC627FCEDA0008572D5 /* inputhandler.cpp in Sources */,
+				0DECADC627FCEDA0008572D5 /* dfainputhandler.cpp in Sources */,
 				0DECADC727FCEDA0008572D5 /* dfa.cpp in Sources */,
 				0DECADC827FCEDA0008572D5 /* main.cpp in Sources */,
+				0DECADDE27FEC9EF008572D5 /* nfainputhandler.cpp in Sources */,
+				0DECADDF27FEC9EF008572D5 /* nfa.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

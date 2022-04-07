@@ -1,25 +1,25 @@
 //
-//  inputhandler.cpp
+//  dfainputhandler.cpp
 //  Automata
 //
 //  Created by Andrew Kuhl on 4/5/22.
 //
 
-#include "inputhandler.hpp"
+#include "dfainputhandler.hpp"
 
 using namespace std;
 
-InputHandler::InputHandler(const char * argv[])
+DFAInputHandler::DFAInputHandler(const char * argv[])
 {
     cout << "[InputHandler]: initialized" << endl;
     cout << "[InputHandler]: opening machine specifications.." << endl;
     
     args = argv; //copy args
 }
-InputHandler::~InputHandler()
+DFAInputHandler::~DFAInputHandler()
 {
 }
-void InputHandler::getMS()
+void DFAInputHandler::getMS()
 {
     ms.open(args[1]);//open file to ptr
     
@@ -63,7 +63,7 @@ void InputHandler::getMS()
             tmp.push_back(c);
         }
         else{
-            Transition t;
+            DFATransition t;
             t.Qs = tmp.at(0);
             t.e = tmp.at(1);
             t.Qf = tmp.at(2);
@@ -89,7 +89,7 @@ void InputHandler::getMS()
 
 }
 
-void InputHandler::getINF()
+void DFAInputHandler::getINF()
 {
     cout << "[InputHandler]: opening input.." << endl;
     
@@ -117,7 +117,7 @@ void InputHandler::getINF()
     }
     inf.close();
 }
-string InputHandler::getInput()
+string DFAInputHandler::getInput()
 {
     if(input.empty()) //if no more input
     {

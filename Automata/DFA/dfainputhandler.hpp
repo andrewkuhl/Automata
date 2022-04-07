@@ -1,12 +1,12 @@
 //
-//  inputhandler.hpp
+//  dfainputhandler.hpp
 //  Automata
 //
 //  Created by Andrew Kuhl on 4/5/22.
 //
 
-#ifndef inputhandler_hpp
-#define inputhandler_hpp
+#ifndef dfainputhandler_hpp
+#define dfainputhandler_hpp
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -14,11 +14,11 @@
 #include <string>
 using namespace std;
 
-struct Transition{ //transition obj
+struct DFATransition{ //transition obj
     string e, Qs, Qf;
 };
 
-class InputHandler {
+class DFAInputHandler {
     
     ifstream ms; //machine specification file ptr
     ifstream inf; //input file ptr
@@ -29,12 +29,12 @@ class InputHandler {
     vector<string> input; //input vector
     
 public:
-    InputHandler(const char * argv[]); //open spec file
-    ~InputHandler();
+    DFAInputHandler(const char * argv[]); //open spec file
+    ~DFAInputHandler();
     
     vector<string> Q_;
     vector<string> E_;
-    vector<Transition> d_;
+    vector<DFATransition> d_;
     string q0_;
     vector<string> F_;
     

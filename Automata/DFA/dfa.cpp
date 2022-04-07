@@ -19,7 +19,7 @@ DFA::DFA(const char * argv[]) //constructor
     cout << "[DFA]: parsing input.." <<endl;
     cout << "[DFA]: initializing InputHandler.." <<endl;
     
-    inhandler = new InputHandler(argv); //alloc inhandler
+    inhandler = new DFAInputHandler(argv); //alloc inhandler
     inhandler->getMS();
     cout << "[DFA]: requesting Q.." <<endl;
     
@@ -151,7 +151,7 @@ bool DFA::run()
         bool tran = false;
         for(int i = 0; i < controller->d.size(); i++) //checks transition on
         {
-            Transition tmp = controller->d.at(i);
+            DFATransition tmp = controller->d.at(i);
             if(tmp.Qs == currState && tmp.e == in) //current state and input
             {
                 tran = true; //if theres a transition
