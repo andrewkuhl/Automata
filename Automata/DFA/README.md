@@ -7,3 +7,18 @@
 ### q0: is the start state
 ### F in Q: is the final state
 
+# Machine Specification File
+```
+Q{ q1 q2 q3 }
+E{ 0 1 }
+d{ 
+q1 0 q1 ,
+q1 1 q2 ,
+q2 0 q3 ,
+q2 1 q2 ,
+q3 0 q2 ,
+q3 1 q2
+}
+q0{ q1 }
+F{ q2 }
+```
