@@ -20,22 +20,22 @@ DFA::DFA(const char * argv[]) //constructor
     cout << "[DFA]: initializing InputHandler.." <<endl;
     
     inhandler = new InputHandler(argv); //alloc inhandler
-    
+    inhandler->getMS();
     cout << "[DFA]: requesting Q.." <<endl;
     
-    controller->Q = inhandler->getQ(); //loading Q
+    controller->Q = inhandler->Q_; //loading Q
     
     cout << "[DFA]: requesting E.." <<endl;
-    controller->E = inhandler->getE(); //loading E
+    controller->E = inhandler->E_; //loading E
 
     cout << "[DFA]: requesting d.." <<endl;
-    controller->d = inhandler->getd(); //loading d
+    controller->d = inhandler->d_; //loading d
     
     cout << "[DFA]: requesting q0.." <<endl;
-    controller->q0 = inhandler->getq0(); //loading q0
+    controller->q0 = inhandler->q0_; //loading q0
     
     cout << "[DFA]: requesting F.." <<endl;
-    controller->F = inhandler->getF(); //loading F
+    controller->F = inhandler->F_; //loading F
 
     cout << "[DFA]: checking Q.. "; //check Q
     if(controller->Q.size()>0)
@@ -135,7 +135,6 @@ DFA::~DFA() //destructor
 }
 bool DFA::run()
 {
-    
     cout << "[DFA]: running" << endl;
     inhandler->getINF(); //loading input file
     cout << "[DFA]: .." << endl;

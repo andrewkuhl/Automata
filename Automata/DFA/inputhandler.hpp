@@ -9,6 +9,7 @@
 #define inputhandler_hpp
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 using namespace std;
@@ -19,22 +20,25 @@ struct Transition{ //transition obj
 
 class InputHandler {
     
-    FILE *ms; //machine specification file ptr
-    FILE *inf; //input file ptr
+    ifstream ms; //machine specification file ptr
+    ifstream inf; //input file ptr
     
     const char **args; //argument copy ptr
+    
+    
     vector<string> input; //input vector
     
 public:
     InputHandler(const char * argv[]); //open spec file
     ~InputHandler();
     
-    //return specifications
-    vector<string> getQ();
-    vector<string> getE();
-    vector<Transition> getd();
-    string getq0();
-    vector<string> getF();
+    vector<string> Q_;
+    vector<string> E_;
+    vector<Transition> d_;
+    string q0_;
+    vector<string> F_;
+    
+    void getMS(); //open spec file
     
     void getINF(); //open input file load input vec
     string getInput(); //return next input
