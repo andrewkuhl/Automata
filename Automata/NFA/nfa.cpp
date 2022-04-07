@@ -156,6 +156,21 @@ bool NFA::machine(string currState_,
     while(!input_.empty()) //while input isnt empty ""
     {
         string in = "";
+        
+        for(int i = 0; i < controller->d.size(); i++)//checking for epsilon
+        {
+            NFATransition tmp = controller->d.at(i);
+            if(tmp.Qs == currState_ && tmp.e == "eps")
+            {
+                //start a thread on transition eps
+                transitions_.push_back(tmp);
+                future<bool> t = async(launch::async, &NFA::machine, this,  tmp.Qf, input_, transitions_);
+                if(t.get()){
+                    return true; //if it accepted return true;
+                }//else continue
+            }
+        }
+        
         in = input_.at(0);
         input_.erase(input_.begin());
         
