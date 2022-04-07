@@ -1,0 +1,57 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "cad29187e957c346418b65a4f029f80fd34ee35b1a20bd0411fd18cbe44a1580"
+    }
+  ],
+  "containerPath" : "/Users/andrewkuhl/Automata/Automata.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx12.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/andrewkuhl/Automata/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/andrewkuhl/Automata/Build/Products",
+      "derivedDataPath" : "/Users/andrewkuhl/Automata/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/andrewkuhl/Automata/DerivedData/Automata/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/andrewkuhl/Automata/DerivedData/Automata/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/andrewkuhl/Automata/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

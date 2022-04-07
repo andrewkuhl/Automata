@@ -49,7 +49,6 @@ void runNFA(const char * argv[]){
     if(inp == "y")
     {
         do{
-            cout << endl;
             cout << "[Main]: running NFA.." << endl;
             if(nfa->run())// NFA run()
                 cout << "[Main]: NFA accepts on input" <<endl;//if run returns true accept

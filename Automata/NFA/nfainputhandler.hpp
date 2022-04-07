@@ -26,11 +26,13 @@ class NFAInputHandler {
     const char **args; //argument copy ptr
     
     
-    vector<string> input; //input vector
+    
     
 public:
     NFAInputHandler(const char * argv[]); //open spec file
     ~NFAInputHandler();
+    
+    vector<string> input; //input vector
     
     vector<string> Q_;
     vector<string> E_;

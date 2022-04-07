@@ -52,6 +52,7 @@ void NFAInputHandler::getMS()
         E_.push_back(c); //load E
         ms >> c;
     }
+    
     cout << "[InputHandler]: loading d" << endl;
     vector<string> tmp;
     ms >> c;
@@ -108,7 +109,6 @@ void NFAInputHandler::getINF()
     }
     
     string c;
-    inf >> c;
     inf >> c;
     while(c != "}")
     {

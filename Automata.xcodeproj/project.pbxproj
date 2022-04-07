@@ -4428,12 +4428,12 @@
 			isa = PBXGroup;
 			children = (
 				0DECADD727FEC9EE008572D5 /* nfainputhandler.cpp */,
-				0DECADD827FEC9EE008572D5 /* nfa.hpp */,
-				0DECADD927FEC9EE008572D5 /* README.md */,
-				0DECADDA27FEC9EE008572D5 /* input.txt */,
-				0DECADDB27FEC9EE008572D5 /* nfa.cpp */,
-				0DECADDC27FEC9EE008572D5 /* machspec.txt */,
 				0DECADDD27FEC9EE008572D5 /* nfainputhandler.hpp */,
+				0DECADDB27FEC9EE008572D5 /* nfa.cpp */,
+				0DECADD827FEC9EE008572D5 /* nfa.hpp */,
+				0DECADDA27FEC9EE008572D5 /* input.txt */,
+				0DECADDC27FEC9EE008572D5 /* machspec.txt */,
+				0DECADD927FEC9EE008572D5 /* README.md */,
 			);
 			path = NFA;
 			sourceTree = "<group>";
