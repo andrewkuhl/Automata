@@ -3,7 +3,7 @@
 ### NFA(Q,E,d,q0,F) where:
 ### Q : finite set of states
 ### E : finite alphabet
-### d : Q x E<sub>eps</sub> -> P(Q) is transition function
+### d : Q x E<sub>eps</sub> &rarr; P(Q) is transition function
 ### q0: is the start state
 ### F in Q: is the set of final states
 
