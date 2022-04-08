@@ -1,9 +1,10 @@
-# Nondeterministic Finite Automata           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
+# Pushdown Automata           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
 
-### NFA(Q,E,d,q0,F) where:
+### PDA(Q,E,G,d,q0,F) where:
 ### Q : finite set of states
-### E : finite alphabet
-### d : Q x E<sub>eps</sub> &rarr; P(Q) is transition function
+### E : finite input alphabet
+### G : finite stack alphabet
+### d : Q x E<sub>eps</sub> x G<sub>eps</sub> &rarr; P(Q x G<sub>eps</sub>) is transition function
 ### q0: is the start state
 ### F in Q: is the set of final states
 
