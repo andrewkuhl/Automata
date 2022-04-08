@@ -7,7 +7,9 @@
 ### q0: is the start state
 ### F in Q: is the set of final states
 
-# Machine Specification File e.g.
+<br>
+
+## Machine Specification File e.g.
 ```
 Q{ q1 q2 q3 }
 E{ 0 1 }
@@ -23,7 +25,7 @@ q0{ q1 }
 F{ q2 }
 ```
 
-# Input File e.g.
+## Input File e.g.
 ```
 input{ 0 0 1 0 1 0 0 1 }
 ```
