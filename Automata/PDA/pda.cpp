@@ -28,6 +28,9 @@ PDA::PDA(const char * argv[]) //constructor
     
     cout << "[PDA]: requesting E.." <<endl;
     controller->E = inhandler->E_; //loading E
+    
+    cout << "[PDA]: requesting G.." <<endl;
+    controller->G = inhandler->G_; //loading G
 
     cout << "[PDA]: requesting d.." <<endl;
     controller->d = inhandler->d_; //loading d
@@ -51,6 +54,16 @@ PDA::PDA(const char * argv[]) //constructor
     
     cout << "[PDA]: checking E.. "; //check E
     if(controller->E.size()>0)
+    {
+        cout << "[ok]" <<endl; //not empty [ok]
+    }
+    else
+    {
+        cout << "[bad]" <<endl; //empty [bad]
+        exit(1);
+    }
+    cout << "[PDA]: checking G.. "; //check G
+    if(controller->G.size()>0)
     {
         cout << "[ok]" <<endl; //not empty [ok]
     }
@@ -107,12 +120,22 @@ PDA::PDA(const char * argv[]) //constructor
             cout << ", ";
     }
     cout << "}\n";
+    cout << "[PDA]: G: {";
+    for(int i = 0; i < controller->G.size(); i++) //print G
+    {
+        cout << "[" << controller->G.at(i) << "]";
+        if(i != controller->G.size()-1)
+            cout << ", ";
+    }
+    cout << "}\n";
     cout << "[PDA]: d: {";
     for(int i = 0; i < controller->d.size(); i++) //print d
     {
         cout << "[" << controller->d.at(i).Qs << ", ";
+        cout << controller->d.at(i).Qf << ", ";
         cout << controller->d.at(i).e << ", ";
-        cout << controller->d.at(i).Qf << "]";
+        cout << controller->d.at(i).popping << " -> ";
+        cout << controller->d.at(i).pushing << "]";
         if(i != controller->d.size()-1)
             cout << ", ";
     }
@@ -143,13 +166,13 @@ bool PDA::run()
     string in = inhandler->getInput(); //get input
     
     //create thread that runs compute( q0, input, transitions)
-    future<bool> thread = async(launch::async, &PDA::machine, this,  controller->q0, inhandler->input, vector<PDATransition>());
+    future<bool> thread = async(launch::async, &PDA::machine, this,  controller->q0, inhandler->input, vector<PDATransition>(), vector<string>());
     
     return thread.get(); //return output
 }
 bool PDA::machine(string currState_,
          vector<string> input_,
-         vector<PDATransition> transitions_)
+         vector<PDATransition> transitions_, vector<string> stack_)
 {
     
     string nextState = "";
@@ -163,11 +186,54 @@ bool PDA::machine(string currState_,
             if(tmp.Qs == currState_ && tmp.e == "eps")
             {
                 //start a thread on transition eps
+                
                 transitions_.push_back(tmp);
-                future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_);
-                if(t.get()){
-                    return true; //if it accepted return true;
-                }//else continue
+                string popped;
+                if(!stack_.empty() && stack_.back() == tmp.popping)
+                {
+                    if(tmp.pushing != "eps")
+                    {
+                        popped = stack_.back();
+                        stack_.pop_back();
+                    
+                        stack_.push_back(tmp.pushing);
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.pop_back();
+                        stack_.push_back(popped);
+                    }
+                    else
+                    {
+                        popped = stack_.back();
+                        stack_.pop_back();
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.push_back(popped);
+                    }
+                }
+                else if(tmp.popping == "eps")
+                {
+                    if(tmp.pushing != "eps")
+                    {
+                        stack_.push_back(tmp.pushing);
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.pop_back();
+                    }
+                    else{
+
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                    }
+                }
+                else
+                    return false;
+                
+                transitions_.pop_back();
             }
         }
         
@@ -189,29 +255,57 @@ bool PDA::machine(string currState_,
         
         if(tran)
         {
-            if(transvec.size() > 1)//more than 1 transition
+            for(int k = 0; k < transvec.size(); k++)
             {
-                for(int k = 0; k < transvec.size(); k++)
+
+                //start a thread on transition k
+                transitions_.push_back(transvec.at(k));
+                string popped;
+                if(stack_.back() == transvec.at(k).popping)
                 {
-                    //for first elemnts in vector
-                    if(k!=0)
-                        transitions_.pop_back();
-                    transitions_.push_back(transvec.at(k));
-                    //start a thread on transition k
-                    future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_);
-                    if(t.get()){
-                        return true; //if it accepted return true;
-                    }//else continue
+                    if(transvec.at(k).pushing != "eps")
+                    {
+                        popped = stack_.back();
+                        stack_.pop_back();
                     
+                        stack_.push_back(transvec.at(k).pushing);
+                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.pop_back();
+                        stack_.push_back(popped);
+                    }
+                    else
+                    {
+                        popped = stack_.back();
+                        stack_.pop_back();
+                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.push_back(popped);
+                    }
                 }
+                else if(transvec.at(k).popping == "eps")
+                {
+                    if(transvec.at(k).pushing != "eps")
+                    {
+                        stack_.push_back(transvec.at(k).pushing);
+                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                        stack_.pop_back();
+                    }
+                    else{
+
+                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                        if(t.get())
+                            return true; //if it accepted return true;
+                    }
+                }
+
+                transitions_.pop_back();
             }
-            else //1 transition
-            {
-                transitions_.push_back(transvec.back());
-                nextState = transvec.back().Qf;
-                currState_ = nextState; //transition if theres transition
-                in = inhandler->getInput();
-            }
+            return false;
         }
         else
         {

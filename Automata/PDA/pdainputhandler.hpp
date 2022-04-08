@@ -15,7 +15,7 @@
 using namespace std;
 
 struct PDATransition{ //transition obj
-    string e, Qs, Qf;
+    string Qs, Qf, e, popping, pushing;
 };
 
 class PDAInputHandler {
@@ -36,6 +36,7 @@ public:
     
     vector<string> Q_;
     vector<string> E_;
+    vector<string> G_;
     vector<PDATransition> d_;
     string q0_;
     vector<string> F_;

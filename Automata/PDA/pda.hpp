@@ -17,6 +17,7 @@ class PDA {
         
         vector<string> Q; //set of states
         vector<string> E; //set of input characters
+        vector<string> G; //set of stack characters
         vector<PDATransition> d; //set of transitions
         string q0; //start state
         vector<string> F; //set of final states
@@ -33,7 +34,7 @@ public:
     bool run(); //run function
     bool machine(string currState_,
              vector<string> input_,
-             vector<PDATransition> transitions_);
+             vector<PDATransition> transitions_, vector<string> stack_);
 };
 
 #endif /* pda_hpp */

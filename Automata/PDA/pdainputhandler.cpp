@@ -53,21 +53,32 @@ void PDAInputHandler::getMS()
         ms >> c;
     }
     
+    cout << "[InputHandler]: loading G" << endl;
+    ms >> c;// burn G and {
+    ms >> c;
+    while(c != "}")
+    {
+        G_.push_back(c); //load G
+        ms >> c;
+    }
+    
     cout << "[InputHandler]: loading d" << endl;
     vector<string> tmp;
     ms >> c;
     do
     {
         ms >> c;
-        if(c!= "," && c != "}")
+        if(c!= "," && c != "}" && c != "->")
         {
             tmp.push_back(c);
         }
-        else{
+        else if(c != "->"){
             PDATransition t;
             t.Qs = tmp.at(0);
-            t.e = tmp.at(1);
-            t.Qf = tmp.at(2);
+            t.Qf = tmp.at(1);
+            t.e = tmp.at(2);
+            t.popping = tmp.at(3);
+            t.pushing = tmp.at(4);
             d_.push_back(t); //load d
             tmp.clear();
         }
