@@ -238,6 +238,7 @@ bool PDA::machine(string currState_,
         }
         
         in = input_.at(0);
+        cout << in << endl;
         input_.erase(input_.begin());
         
         bool tran = false;

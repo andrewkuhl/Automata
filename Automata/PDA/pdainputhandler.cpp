@@ -68,19 +68,22 @@ void PDAInputHandler::getMS()
     do
     {
         ms >> c;
-        if(c!= "," && c != "}" && c != "->")
+        if(c!="->")
         {
-            tmp.push_back(c);
-        }
-        else if(c != "->"){
-            PDATransition t;
-            t.Qs = tmp.at(0);
-            t.Qf = tmp.at(1);
-            t.e = tmp.at(2);
-            t.popping = tmp.at(3);
-            t.pushing = tmp.at(4);
-            d_.push_back(t); //load d
-            tmp.clear();
+            if(c!= "," && c != "}")
+            {
+                tmp.push_back(c);
+            }
+            else{
+                PDATransition t;
+                t.Qs = tmp.at(0);
+                t.Qf = tmp.at(1);
+                t.e = tmp.at(2);
+                t.popping = tmp.at(3);
+                t.pushing = tmp.at(4);
+                d_.push_back(t); //load d
+                tmp.clear();
+            }
         }
     }while(c != "}");
     
