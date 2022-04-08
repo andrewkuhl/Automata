@@ -1,32 +1,44 @@
 # Turing Machine           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
 
-### PDA( Q , E , G , d , q0 , F ) where:
+### TM( Q , E , G , d , q0 , q<sub>accept</sub> , q<sub>reject</sub> ) where:
 ### Q : finite set of states
-### E : finite input alphabet
-### G : finite stack alphabet
-### d : Q x E<sub>eps</sub> x G<sub>eps</sub> &rarr; P(Q x G<sub>eps</sub>) is transition function
-### q0: is the start state
-### F in Q: is the set of final states
+### E : finite input alphabet not containing blank
+### G : finite tape alphabet containing blank
+### d : Q x G &rarr; Q x G x {left,right} is transition function
+### q0 in Q: is the start state
+### q<sub>accept</sub> in Q: is the accept state
+### q<sub>reject</sub> in Q: is the final state
 
 <br>
 
 ## Machine Specification File e.g.
 ```
-Q{ q1 q2 q3 q4 }
-E{ 0 1 }
-G{ 0 1 $ }
+Q{ q1 q2 q3 q4 q5 q6 q7 }
+E{ 0 }
+G{ 0 x blank }
 d{
-q1 q2 eps eps -> $ ,
-q2 q2 0 eps -> 0 ,
-q2 q3 1 0 -> eps ,
-q3 q3 1 0 -> eps ,
-q3 q4 eps $ -> eps
+q1 q7 blank -> , R ;
+q1 q7 x -> , R ;
+q1 q2 0 -> blank , R ;
+q2 q2 x -> , R ;
+q2 q3 0 -> x , R ;
+q2 q6 blank -> , R ;
+q3 q3 x -> , R ;
+q3 q4 0 -> , R ;
+q3 q5 blank -> , L ;
+q4 q3 0 -> x , R ;
+q4 q4 x -> , R ;
+q4 q7 blank -> , R ;
+q5 q5 0 -> , L ;
+q5 q5 x -> , L ;
+q5 q2 blank -> , R 
 }
 q0{ q1 }
-F{ q1 q4 }
+qaccept{ q6 }
+qreject{ q7 }
 ```
 
 ## Input File e.g.
 ```
-input{ 0 0 0 0 0 0 1 1 1 1 1 1 }
+input{ 0 0 0 0 }
 ```
