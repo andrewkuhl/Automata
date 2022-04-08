@@ -16,8 +16,8 @@
 		0DECADF327FF8CCB008572D5 /* cfg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADEF27FF8CCB008572D5 /* cfg.cpp */; };
 		0DECAE0627FFD1A1008572D5 /* pdainputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADFF27FFD1A0008572D5 /* pdainputhandler.cpp */; };
 		0DECAE0727FFD1A1008572D5 /* pda.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE0327FFD1A0008572D5 /* pda.cpp */; };
-		0DECAE102800D4DC008572D5 /* tm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE092800D4DC008572D5 /* tm.cpp */; };
-		0DECAE112800D4DC008572D5 /* tminputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE0A2800D4DC008572D5 /* tminputhandler.cpp */; };
+		0DECAE1A2800E8E2008572D5 /* dtminputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE172800E8E2008572D5 /* dtminputhandler.cpp */; };
+		0DECAE1B2800E8E2008572D5 /* dtm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE182800E8E2008572D5 /* dtm.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -567,13 +567,13 @@
 		0DECAE0327FFD1A0008572D5 /* pda.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pda.cpp; sourceTree = "<group>"; };
 		0DECAE0427FFD1A0008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
 		0DECAE0527FFD1A0008572D5 /* pdainputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pdainputhandler.hpp; sourceTree = "<group>"; };
-		0DECAE092800D4DC008572D5 /* tm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tm.cpp; sourceTree = "<group>"; };
-		0DECAE0A2800D4DC008572D5 /* tminputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tminputhandler.cpp; sourceTree = "<group>"; };
-		0DECAE0B2800D4DC008572D5 /* tminputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tminputhandler.hpp; sourceTree = "<group>"; };
-		0DECAE0C2800D4DC008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0DECAE0D2800D4DC008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
-		0DECAE0E2800D4DC008572D5 /* tm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tm.hpp; sourceTree = "<group>"; };
-		0DECAE0F2800D4DC008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
+		0DECAE132800E8E2008572D5 /* dtm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dtm.hpp; sourceTree = "<group>"; };
+		0DECAE142800E8E2008572D5 /* dtminputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dtminputhandler.hpp; sourceTree = "<group>"; };
+		0DECAE152800E8E2008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0DECAE162800E8E2008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECAE172800E8E2008572D5 /* dtminputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtminputhandler.cpp; sourceTree = "<group>"; };
+		0DECAE182800E8E2008572D5 /* dtm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dtm.cpp; sourceTree = "<group>"; };
+		0DECAE192800E8E2008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4221,7 +4221,7 @@
 		0DECAD9327FCEDA0008572D5 /* Automata */ = {
 			isa = PBXGroup;
 			children = (
-				0DECAE082800D4DC008572D5 /* TM */,
+				0DECAE122800E8E2008572D5 /* DTM */,
 				0DECADFE27FFD1A0008572D5 /* PDA */,
 				0DECADEA27FF8CCB008572D5 /* CFG */,
 				0DECADD627FEC9EE008572D5 /* NFA */,
@@ -4496,18 +4496,18 @@
 			path = PDA;
 			sourceTree = "<group>";
 		};
-		0DECAE082800D4DC008572D5 /* TM */ = {
+		0DECAE122800E8E2008572D5 /* DTM */ = {
 			isa = PBXGroup;
 			children = (
-				0DECAE092800D4DC008572D5 /* tm.cpp */,
-				0DECAE0A2800D4DC008572D5 /* tminputhandler.cpp */,
-				0DECAE0B2800D4DC008572D5 /* tminputhandler.hpp */,
-				0DECAE0C2800D4DC008572D5 /* README.md */,
-				0DECAE0D2800D4DC008572D5 /* input.txt */,
-				0DECAE0E2800D4DC008572D5 /* tm.hpp */,
-				0DECAE0F2800D4DC008572D5 /* machspec.txt */,
+				0DECAE132800E8E2008572D5 /* dtm.hpp */,
+				0DECAE142800E8E2008572D5 /* dtminputhandler.hpp */,
+				0DECAE152800E8E2008572D5 /* README.md */,
+				0DECAE162800E8E2008572D5 /* input.txt */,
+				0DECAE172800E8E2008572D5 /* dtminputhandler.cpp */,
+				0DECAE182800E8E2008572D5 /* dtm.cpp */,
+				0DECAE192800E8E2008572D5 /* machspec.txt */,
 			);
-			path = TM;
+			path = DTM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4567,14 +4567,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DECAE102800D4DC008572D5 /* tm.cpp in Sources */,
-				0DECAE112800D4DC008572D5 /* tminputhandler.cpp in Sources */,
 				0DECADC627FCEDA0008572D5 /* dfainputhandler.cpp in Sources */,
 				0DECADC727FCEDA0008572D5 /* dfa.cpp in Sources */,
 				0DECADC827FCEDA0008572D5 /* main.cpp in Sources */,
+				0DECAE1A2800E8E2008572D5 /* dtminputhandler.cpp in Sources */,
 				0DECADF327FF8CCB008572D5 /* cfg.cpp in Sources */,
 				0DECADDE27FEC9EF008572D5 /* nfainputhandler.cpp in Sources */,
 				0DECADDF27FEC9EF008572D5 /* nfa.cpp in Sources */,
+				0DECAE1B2800E8E2008572D5 /* dtm.cpp in Sources */,
 				0DECAE0727FFD1A1008572D5 /* pda.cpp in Sources */,
 				0DECADF227FF8CCB008572D5 /* cfginputhandler.cpp in Sources */,
 				0DECAE0627FFD1A1008572D5 /* pdainputhandler.cpp in Sources */,

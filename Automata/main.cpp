@@ -11,7 +11,7 @@
 #include "nfa.hpp"
 #include "pda.hpp"
 #include "cfg.hpp"
-#include "tm.hpp"
+#include "dtm.hpp"
 
 using namespace std;
 
@@ -91,26 +91,26 @@ void runPDA(const char * argv[]){
     }
 }
 
-void runTM(const char * argv[]){
-    cout << "[Main]: initializing TM.." << endl;
+void runDTM(const char * argv[]){
+    cout << "[Main]: initializing DTM.." << endl;
     
-    TM *tm = new TM(argv); //TM constructor
+    DTM *dtm = new DTM(argv); //TM constructor
     
     cin.clear();
-    cout << "[Main]: run TM? [y/n]  ";
+    cout << "[Main]: run DTM? [y/n]  ";
     string inp;
     cin >> inp;
     if(inp == "y")
     {
         do{
-            cout << "[Main]: running TM.." << endl;
-            if(tm->run())// TM run()
-                cout << "[Main]: TM accepts on input" <<endl;//if run returns true accept
+            cout << "[Main]: running DTM.." << endl;
+            if(dtm->run())// DTM run()
+                cout << "[Main]: DTM accepts on input" <<endl;//if run returns true accept
             else
-                cout << "[Main]: TM rejects on input" <<endl;//else reject
+                cout << "[Main]: DTM rejects on input" <<endl;//else reject
             
             cout << "[Main]: .." << endl;
-            cout << "[Main]: run TM again? [y/n]  ";
+            cout << "[Main]: run DTM again? [y/n]  ";
             cin >> inp;
         }while(inp == "y");
     }
@@ -130,7 +130,7 @@ int main(int argc, const char * argv[]) {
     cout << "[2][NFA].." << endl;
     cout << "[3][PDA].." << endl;
     cout << "[4][CFG].." << endl;
-    cout << "[5][TM].." << endl;
+    cout << "[5][DTM].." << endl;
     cout << "[0][EXIT]" << endl;
     
     int m;
@@ -159,7 +159,7 @@ int main(int argc, const char * argv[]) {
         }
         case 5://5 TM
         {
-            runTM(argv);
+            runDTM(argv);
             break;
         }
         case 0://exit
