@@ -1,6 +1,6 @@
 # Context Free Grammar           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
 
-### CFG(V,E,R,S) where:
+### CFG( V , E , R , S ) where:
 ### V : finite set of variables
 ### E : finite set of terminals
 ### R : finite set of rules, variable = string of terminals
