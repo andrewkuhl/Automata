@@ -7,7 +7,7 @@
 |__Nondeterministic Finite Automata__| __[[NFA DIR]](Automata/NFA)__ |
 |__Pushdown Automata__| __[[PDA DIR]](Automata/PDA)__ |
 |__Context Free Grammar__| __[[CFG DIR]](Automata/CFG)__ |
-|__Turing Machine__| __[[TM DIR]](Automata/TM)__ |
+|__Deterministic Turing Machine__| __[[DTM DIR]](Automata/DTM)__ |
 
 <br>
 
