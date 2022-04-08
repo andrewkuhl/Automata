@@ -16,6 +16,9 @@ DTM::DTM(const char * argv[]) //constructor
     cout << "[DTM]: initializing Controller.." <<endl;
     
     controller = new Controller(); //alloc controller
+    cout << "[DTM]: initializing Tape.." <<endl;
+    
+    tape = new Tape(); //alloc tape
     
     cout << "[DTM]: initializing InputHandler.." <<endl;
     

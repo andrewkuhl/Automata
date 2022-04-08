@@ -13,6 +13,51 @@
 
 class DTM {
     
+    struct Tape {
+        
+        struct tapeSymbol{
+        string e;
+        tapeSymbol* left;
+        tapeSymbol* right;
+            tapeSymbol(){e = "blank"; left = nullptr; right = nullptr;}
+        };
+        
+        tapeSymbol* head;
+        tapeSymbol* last;
+        tapeSymbol* curr;
+        
+        Tape(){head = new tapeSymbol();last = head; curr = head;
+            cout<<"[Tape]: initialized"<<endl;}
+        ~Tape(){deleteTape(head);}
+        void deleteTape(tapeSymbol* headptr){
+            if(headptr == nullptr)
+                return;
+            deleteTape(headptr->right);
+            delete headptr;
+        }
+        void newSymbol(string a){
+            tapeSymbol* newsym = new tapeSymbol();
+            newsym->e = a;
+            newsym->left = last;
+            last->right = newsym;
+            last = last->right;
+        }
+        string read(){return curr->e;}
+        void write(string e_){curr->e = e_;}
+        void move(string dir){
+            if(dir == "L"){
+                if(curr->left != nullptr)
+                    curr = curr->left;
+            }
+            if(dir == "R"){
+                if(curr->right == nullptr)
+                    newSymbol("blank");
+                curr = curr->right;
+            }
+        }
+        
+    }*tape;
+    
     struct Controller{ //controller
         
         vector<string> Q; //set of states
