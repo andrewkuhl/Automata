@@ -17,92 +17,91 @@ PDA::PDA(const char * argv[]) //constructor
     
     controller = new Controller(); //alloc controller
     
-    cout << "[PDA]: parsing input.." <<endl;
     cout << "[PDA]: initializing InputHandler.." <<endl;
     
     inhandler = new PDAInputHandler(argv); //alloc inhandler
     inhandler->getMS();
-    cout << "[PDA]: requesting Q.." <<endl;
+    cout << "[PDA]: loading";
     
     controller->Q = inhandler->Q_; //loading Q
     
-    cout << "[PDA]: requesting E.." <<endl;
+    cout << ".";
     controller->E = inhandler->E_; //loading E
     
-    cout << "[PDA]: requesting G.." <<endl;
+    cout << ".";
     controller->G = inhandler->G_; //loading G
 
-    cout << "[PDA]: requesting d.." <<endl;
+    cout << ".";
     controller->d = inhandler->d_; //loading d
     
-    cout << "[PDA]: requesting q0.." <<endl;
+    cout << ".";
     controller->q0 = inhandler->q0_; //loading q0
     
-    cout << "[PDA]: requesting F.." <<endl;
+    cout << ".";
     controller->F = inhandler->F_; //loading F
 
-    cout << "[PDA]: checking Q.. "; //check Q
+    cout << ".";
     if(controller->Q.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad Q]" <<endl; //empty [bad]
         exit(1);
     }
     
-    cout << "[PDA]: checking E.. "; //check E
+    cout << ".";
     if(controller->E.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad E]" <<endl; //empty [bad]
         exit(1);
     }
-    cout << "[PDA]: checking G.. "; //check G
+    cout << ".";
     if(controller->G.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad G]" <<endl; //empty [bad]
         exit(1);
     }
-    cout << "[PDA]: checking d.. "; //check d
+    cout << ".";
     if(controller->d.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad d]" <<endl; //empty [bad]
         exit(1);
     }
-    cout << "[PDA]: checking q0.. "; //check q0
+    cout << ".";
     if(controller->q0.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad q0]" <<endl; //empty [bad]
         exit(1);
     }
-    cout << "[PDA]: checking F.. "; //check F
+    cout << ".";
     if(controller->F.size()>0)
     {
-        cout << "[ok]" <<endl; //not empty [ok]
+        cout << ".";
     }
     else
     {
-        cout << "[bad]" <<endl; //empty [bad]
+        cout << "[bad F]" <<endl; //empty [bad]
         exit(1);
     }
-    
+    cout << "\n[PDA]: done" <<endl;
     cout << "[PDA]: passed checks.. " <<endl; //if not exited pass!
     cout << "[PDA]: Q: {";
     for(int i = 0; i < controller->Q.size(); i++) //print Q
@@ -184,6 +183,19 @@ bool PDA::machine(string currState_,
             //return true if true
             
             transitions_.push_back(tmp);
+            
+            string popped = "";
+            if(!stack_.empty() && tmp.popping != "eps")
+            {
+                popped = stack_.back();
+                //cout << "popped " << popped << endl;
+                stack_.pop_back();
+            }
+            if(tmp.pushing != "eps")
+            {
+                stack_.push_back(tmp.pushing);
+                //cout << "pushed " << tmp.pushing << endl;
+            }
             //create thread that runs compute( nextState, input, previous transitions, stack)
             future<bool> thread = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
             if(thread.get())
@@ -191,6 +203,10 @@ bool PDA::machine(string currState_,
             else
             {
                 transitions_.pop_back();
+                if(tmp.pushing != "eps")
+                    stack_.pop_back();
+                if(tmp.popping != "eps")
+                    stack_.push_back(popped);
             }
         }
     }
@@ -222,8 +238,21 @@ bool PDA::machine(string currState_,
                 PDATransition tmp = temptrans.at(k);
                 //start thread on found transition
                 //return true if true
-                
+
                 transitions_.push_back(tmp);
+                
+                string popped = "";
+                if(!stack_.empty() && tmp.popping != "eps")
+                {
+                    popped = stack_.back();
+                    //cout << "popped " << popped << endl;
+                    stack_.pop_back();
+                }
+                if(tmp.pushing != "eps")
+                {
+                    stack_.push_back(tmp.pushing);
+                    //cout << "pushed " << tmp.pushing << endl;
+                }
                 //create thread that runs compute( nextState, input, previous transitions, stack)
                 future<bool> thread = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
                 if(thread.get())
@@ -231,6 +260,10 @@ bool PDA::machine(string currState_,
                 else
                 {
                     transitions_.pop_back();
+                    if(tmp.pushing != "eps")
+                        stack_.pop_back();
+                    if(tmp.popping != "eps")
+                        stack_.push_back(popped);
                 }
             }
         }
@@ -248,6 +281,7 @@ bool PDA::machine(string currState_,
             {
                 PDATransition tmp = transitions_.at(j);
                 cout << "[Machine]: F{ " << tmp.Qs << " " << tmp.Qf << " " << tmp.e << " " << tmp.popping << " -> " << tmp.pushing << " }" << endl;
+                cout << "[Machine]: .." << endl;
             }
             return true;
         }

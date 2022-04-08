@@ -12,7 +12,7 @@ using namespace std;
 PDAInputHandler::PDAInputHandler(const char * argv[])
 {
     cout << "[InputHandler]: initialized" << endl;
-    cout << "[InputHandler]: opening machine specifications.." << endl;
+    cout << "[InputHandler]: loading";
     
     args = argv; //copy args
 }
@@ -31,11 +31,10 @@ void PDAInputHandler::getMS()
     }
     else //else file opened?
     {
-        cout << "[InputHandler]: opened specifications" << endl;
-        cout << "[InputHandler]: ready.." << endl;
+        cout << ".";
         //opened file
     }
-    cout << "[InputHandler]: loading Q" << endl;
+    cout << ".";
     string c;
     ms >> c;// burn Q and {
     ms >> c;
@@ -44,7 +43,7 @@ void PDAInputHandler::getMS()
         Q_.push_back(c); //load Q
         ms >> c;
     }
-    cout << "[InputHandler]: loading E" << endl;
+    cout << ".";
     ms >> c;// burn E and {
     ms >> c;
     while(c != "}")
@@ -53,7 +52,7 @@ void PDAInputHandler::getMS()
         ms >> c;
     }
     
-    cout << "[InputHandler]: loading G" << endl;
+    cout << ".";
     ms >> c;// burn G and {
     ms >> c;
     while(c != "}")
@@ -62,7 +61,7 @@ void PDAInputHandler::getMS()
         ms >> c;
     }
     
-    cout << "[InputHandler]: loading d" << endl;
+    cout << ".";
     vector<string> tmp;
     ms >> c;
     do
@@ -87,12 +86,12 @@ void PDAInputHandler::getMS()
         }
     }while(c != "}");
     
-    cout << "[InputHandler]: loading q0" << endl;
+    cout << ".";
     ms >> c;
     ms >> q0_;
     ms >> c;
     
-    cout << "[InputHandler]: loading F" << endl;
+    cout << ".";
     ms >> c;// burn F and {
     ms >> c;
     while(c != "}")
@@ -101,12 +100,12 @@ void PDAInputHandler::getMS()
         ms >> c;
     }
     ms.close();
-
+    cout << "\n[InputHandler]: done"<<endl;
 }
 
 void PDAInputHandler::getINF()
 {
-    cout << "[InputHandler]: opening input.." << endl;
+    cout << ".";
     
     inf.open(args[2]); //open file to ptr
     if (!inf) //if file not load
@@ -117,8 +116,8 @@ void PDAInputHandler::getINF()
     }
     else //file loaded
     {
-        cout << "[InputHandler]: opened input" << endl;
-        cout << "[InputHandler]: ready.." << endl;
+        cout << ".";
+        cout << ".";
         //opened file
     }
     
