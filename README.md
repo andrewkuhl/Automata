@@ -6,4 +6,4 @@
 ### [CFG]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [CFG DIR](Automata/CFG) ]
 
 ## Running
- ```./Automata <Specifications Path> <Input Path>" ```
+ ```./Automata <MACHINE_SPEC_PATH> <INPUT_PATH>" ```
