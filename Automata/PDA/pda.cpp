@@ -186,61 +186,71 @@ bool PDA::machine(string currState_,
             if(tmp.Qs == currState_ && tmp.e == "eps")
             {
                 //start a thread on transition eps
-                
                 transitions_.push_back(tmp);
-                string popped;
-                if(!stack_.empty() && stack_.back() == tmp.popping)
+                
+                //add stack action
+                if(tmp.popping != "eps")
                 {
                     if(tmp.pushing != "eps")
                     {
-                        popped = stack_.back();
-                        stack_.pop_back();
-                    
-                        stack_.push_back(tmp.pushing);
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        stack_.pop_back();
-                        stack_.push_back(popped);
+                        if(!stack_.empty() && tmp.popping == stack_.back())
+                        {
+                            string popped = stack_.back();
+                            stack_.pop_back();
+                            stack_.push_back(tmp.pushing);
+                            
+                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                            if(t.get())
+                                return true; //if it accepted return true;
+                            
+                            stack_.pop_back();
+                            stack_.push_back(popped);
+                        }
                     }
                     else
                     {
-                        popped = stack_.back();
-                        stack_.pop_back();
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        stack_.push_back(popped);
+                        if(!stack_.empty() && tmp.popping == stack_.back())
+                        {
+                            string popped = stack_.back();
+                            stack_.pop_back();
+                            
+                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                            if(t.get())
+                                return true; //if it accepted return true;
+                            
+                            stack_.push_back(popped);
+                        }
                     }
                 }
-                else if(tmp.popping == "eps")
+                else
                 {
                     if(tmp.pushing != "eps")
                     {
                         stack_.push_back(tmp.pushing);
+                        
                         future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
                         if(t.get())
                             return true; //if it accepted return true;
+                        
                         stack_.pop_back();
                     }
-                    else{
-
+                    else
+                    {
                         future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
                         if(t.get())
                             return true; //if it accepted return true;
                     }
                 }
-                else
-                    return false;
+                
                 
                 transitions_.pop_back();
-            }
+                
+            }//else continue
         }
         
         in = input_.at(0);
         cout << in << endl;
         input_.erase(input_.begin());
-        
         bool tran = false;
         vector<PDATransition> transvec;
         for(int i = 0; i < controller->d.size(); i++) //checks transition on
@@ -248,6 +258,7 @@ bool PDA::machine(string currState_,
             PDATransition tmp = controller->d.at(i);
             if(tmp.Qs == currState_ && tmp.e == in) //current state and input
             {
+                cout << "transition" << endl;
                 tran = true; //if theres a transition
                 transvec.push_back(tmp);
                 
@@ -256,57 +267,69 @@ bool PDA::machine(string currState_,
         
         if(tran)
         {
+            
             for(int k = 0; k < transvec.size(); k++)
             {
-
-                //start a thread on transition k
-                transitions_.push_back(transvec.at(k));
-                string popped;
-                if(stack_.back() == transvec.at(k).popping)
+                
+                PDATransition tmp = controller->d.at(k);
+                transitions_.push_back(tmp);
+                
+                //add stack action
+                if(tmp.popping != "eps")
                 {
-                    if(transvec.at(k).pushing != "eps")
+                    if(tmp.pushing != "eps")
                     {
-                        popped = stack_.back();
-                        stack_.pop_back();
-                    
-                        stack_.push_back(transvec.at(k).pushing);
-                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        stack_.pop_back();
-                        stack_.push_back(popped);
+                        if(!stack_.empty() && tmp.popping == stack_.back())
+                        {
+                            string popped = stack_.back();
+                            stack_.pop_back();
+                            stack_.push_back(tmp.pushing);
+                            
+                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                            if(t.get())
+                                return true; //if it accepted return true;
+                            
+                            stack_.pop_back();
+                            stack_.push_back(popped);
+                        }
                     }
                     else
                     {
-                        popped = stack_.back();
-                        stack_.pop_back();
-                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        stack_.push_back(popped);
+                        if(!stack_.empty() && tmp.popping == stack_.back())
+                        {
+                            string popped = stack_.back();
+                            stack_.pop_back();
+                            
+                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                            if(t.get())
+                                return true; //if it accepted return true;
+                            
+                            stack_.push_back(popped);
+                        }
                     }
                 }
-                else if(transvec.at(k).popping == "eps")
+                else
                 {
-                    if(transvec.at(k).pushing != "eps")
+                    if(tmp.pushing != "eps")
                     {
-                        stack_.push_back(transvec.at(k).pushing);
-                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                        stack_.push_back(tmp.pushing);
+                        
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
                         if(t.get())
                             return true; //if it accepted return true;
+                        
                         stack_.pop_back();
                     }
-                    else{
-
-                        future<bool> t = async(launch::async, &PDA::machine, this,  transvec.at(k).Qf, input_, transitions_, stack_);
+                    else
+                    {
+                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
                         if(t.get())
                             return true; //if it accepted return true;
                     }
                 }
-
                 transitions_.pop_back();
             }
-            return false;
+            
         }
         else
         {
