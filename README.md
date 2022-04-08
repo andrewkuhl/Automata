@@ -1,7 +1,7 @@
 # Automata Theory Implementation
 ### choose machine..
 
-|   |   |
+|__Deterministic Finite Automata__| __[[DFA DIR]](Automata/DFA)__ |
 |---|---|
 |__Deterministic Finite Automata__| __[[DFA DIR]](Automata/DFA)__ |
 |__Nondeterministic Finite Automata__| __[[NFA DIR]](Automata/NFA)__ |
