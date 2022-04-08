@@ -1,6 +1,6 @@
 # Pushdown Automata           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
 
-### PDA(Q,E,G,d,q0,F) where:
+### PDA( Q, E, G, d, q0, F ) where:
 ### Q : finite set of states
 ### E : finite input alphabet
 ### G : finite stack alphabet
