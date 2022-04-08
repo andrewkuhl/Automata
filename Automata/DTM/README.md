@@ -1,6 +1,6 @@
-# Turing Machine           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
+# Deterministic Turing Machine           <div style="text-align: right">[back](https://github.com/andrewkuhl/Automata)</div>
 
-### TM( Q , E , G , d , q0 , q<sub>accept</sub> , q<sub>reject</sub> ) where:
+### DTM( Q , E , G , d , q0 , q<sub>accept</sub> , q<sub>reject</sub> ) where:
 ### Q : finite set of states
 ### E : finite input alphabet not containing blank
 ### G : finite tape alphabet containing blank
