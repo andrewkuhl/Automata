@@ -10,7 +10,7 @@
 # Machine Specification File e.g.
 ```
 Q{ q1 q2 q3 q4 }
-E{ 0 1 eps }
+E{ 0 1 }
 d{
 q1 0 q1 ,
 q1 1 q1 ,
