@@ -15,11 +15,10 @@ class CFG {
     
     struct Controller{ //controller
         
-        vector<string> Q; //set of states
-        vector<string> E; //set of input characters
-        vector<CFGTransition> d; //set of transitions
-        string q0; //start state
-        vector<string> F; //set of final states
+        vector<string> V; //set of variables
+        vector<string> E; //set of terminals
+        vector<CFGTransition> R; //set of rules
+        string S; //start state
         
         Controller(){cout<<"[Controller]: initialized" <<endl;}
     }*controller; //controller object
@@ -27,13 +26,9 @@ class CFG {
     CFGInputHandler* inhandler; //input handler obj
     
 public:
-    
-    CFG(const char * argv[]);
-    ~CFG();
-    bool run(); //run function
-    bool machine(string currState_,
-             vector<string> input_,
-             vector<CFGTransition> transitions_);
+    CFG(const char * argv[]){}
+    ~CFG(){}
+
 };
 
 #endif /* cfg_hpp */

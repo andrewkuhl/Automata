@@ -1,12 +1,12 @@
 //
-//  cfginputhandler.hpp
+//  pdainputhandler.hpp
 //  Automata
 //
 //  Created by Andrew Kuhl on 4/7/22.
 //
 
-#ifndef cfginputhandler_hpp
-#define cfginputhandler_hpp
+#ifndef pdainputhandler_hpp
+#define pdainputhandler_hpp
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -14,12 +14,11 @@
 #include <string>
 using namespace std;
 
-struct CFGTransition{ //transition obj
-    string v;
-    vector<string> rule;
+struct PDATransition{ //transition obj
+    string e, Qs, Qf;
 };
 
-class CFGInputHandler {
+class PDAInputHandler {
     
     ifstream ms; //machine specification file ptr
     ifstream inf; //input file ptr
@@ -30,15 +29,16 @@ class CFGInputHandler {
     
     
 public:
-    CFGInputHandler(const char * argv[]); //open spec file
-    ~CFGInputHandler();
+    PDAInputHandler(const char * argv[]); //open spec file
+    ~PDAInputHandler();
     
     vector<string> input; //input vector
     
-    vector<string> V_;
+    vector<string> Q_;
     vector<string> E_;
-    vector<CFGTransition> R_;
-    string S_;
+    vector<PDATransition> d_;
+    string q0_;
+    vector<string> F_;
     
     void getMS(); //open spec file
     
@@ -46,4 +46,4 @@ public:
     string getInput(); //return next input
 };
 
-#endif /* cfginputhandler_hpp */
+#endif /* inputhandler_hpp */

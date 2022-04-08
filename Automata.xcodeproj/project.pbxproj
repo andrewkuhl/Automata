@@ -14,6 +14,8 @@
 		0DECADDF27FEC9EF008572D5 /* nfa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADDB27FEC9EE008572D5 /* nfa.cpp */; };
 		0DECADF227FF8CCB008572D5 /* cfginputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADEB27FF8CCB008572D5 /* cfginputhandler.cpp */; };
 		0DECADF327FF8CCB008572D5 /* cfg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADEF27FF8CCB008572D5 /* cfg.cpp */; };
+		0DECAE0627FFD1A1008572D5 /* pdainputhandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECADFF27FFD1A0008572D5 /* pdainputhandler.cpp */; };
+		0DECAE0727FFD1A1008572D5 /* pda.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0DECAE0327FFD1A0008572D5 /* pda.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -556,6 +558,13 @@
 		0DECADEF27FF8CCB008572D5 /* cfg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfg.cpp; sourceTree = "<group>"; };
 		0DECADF027FF8CCB008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
 		0DECADF127FF8CCB008572D5 /* cfginputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cfginputhandler.hpp; sourceTree = "<group>"; };
+		0DECADFF27FFD1A0008572D5 /* pdainputhandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pdainputhandler.cpp; sourceTree = "<group>"; };
+		0DECAE0027FFD1A0008572D5 /* pda.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pda.hpp; sourceTree = "<group>"; };
+		0DECAE0127FFD1A0008572D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0DECAE0227FFD1A0008572D5 /* input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = input.txt; sourceTree = "<group>"; };
+		0DECAE0327FFD1A0008572D5 /* pda.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pda.cpp; sourceTree = "<group>"; };
+		0DECAE0427FFD1A0008572D5 /* machspec.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = machspec.txt; sourceTree = "<group>"; };
+		0DECAE0527FFD1A0008572D5 /* pdainputhandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pdainputhandler.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4203,6 +4212,7 @@
 		0DECAD9327FCEDA0008572D5 /* Automata */ = {
 			isa = PBXGroup;
 			children = (
+				0DECADFE27FFD1A0008572D5 /* PDA */,
 				0DECADEA27FF8CCB008572D5 /* CFG */,
 				0DECADD627FEC9EE008572D5 /* NFA */,
 				0DECAD9427FCEDA0008572D5 /* DFA */,
@@ -4462,6 +4472,20 @@
 			path = CFG;
 			sourceTree = "<group>";
 		};
+		0DECADFE27FFD1A0008572D5 /* PDA */ = {
+			isa = PBXGroup;
+			children = (
+				0DECADFF27FFD1A0008572D5 /* pdainputhandler.cpp */,
+				0DECAE0027FFD1A0008572D5 /* pda.hpp */,
+				0DECAE0127FFD1A0008572D5 /* README.md */,
+				0DECAE0227FFD1A0008572D5 /* input.txt */,
+				0DECAE0327FFD1A0008572D5 /* pda.cpp */,
+				0DECAE0427FFD1A0008572D5 /* machspec.txt */,
+				0DECAE0527FFD1A0008572D5 /* pdainputhandler.hpp */,
+			);
+			path = PDA;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4525,7 +4549,9 @@
 				0DECADF327FF8CCB008572D5 /* cfg.cpp in Sources */,
 				0DECADDE27FEC9EF008572D5 /* nfainputhandler.cpp in Sources */,
 				0DECADDF27FEC9EF008572D5 /* nfa.cpp in Sources */,
+				0DECAE0727FFD1A1008572D5 /* pda.cpp in Sources */,
 				0DECADF227FF8CCB008572D5 /* cfginputhandler.cpp in Sources */,
+				0DECAE0627FFD1A1008572D5 /* pdainputhandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

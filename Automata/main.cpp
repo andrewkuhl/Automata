@@ -9,6 +9,7 @@
 
 #include "dfa.hpp"
 #include "nfa.hpp"
+#include "pda.hpp"
 #include "cfg.hpp"
 
 using namespace std;
@@ -64,26 +65,26 @@ void runNFA(const char * argv[]){
     }
 }
 
-void runCFG(const char * argv[]){
-    cout << "[Main]: initializing CFG.." << endl;
+void runPDA(const char * argv[]){
+    cout << "[Main]: initializing PDA.." << endl;
     
-    CFG *cfg = new CFG(argv); //NFA constructor
+    PDA *pda = new PDA(argv); //PDA constructor
     
     cin.clear();
-    cout << "[Main]: run CFG? [y/n]  ";
+    cout << "[Main]: run PDA? [y/n]  ";
     string inp;
     cin >> inp;
     if(inp == "y")
     {
         do{
-            cout << "[Main]: running CFG.." << endl;
-            if(cfg->run())// NFA run()
-                cout << "[Main]: CFG accepts on input" <<endl;//if run returns true accept
+            cout << "[Main]: running PDA.." << endl;
+            if(pda->run())// PDA run()
+                cout << "[Main]: PDA accepts on input" <<endl;//if run returns true accept
             else
-                cout << "[Main]: CFG rejects on input" <<endl;//else reject
+                cout << "[Main]: PDA rejects on input" <<endl;//else reject
             
             cout << "[Main]: .." << endl;
-            cout << "[Main]: run CFG again? [y/n]  ";
+            cout << "[Main]: run PDA again? [y/n]  ";
             cin >> inp;
         }while(inp == "y");
     }
@@ -101,7 +102,8 @@ int main(int argc, const char * argv[]) {
     cout << "[Main]: choose machine.." << endl; //machine choice input
     cout << "[DFA].. \t[1]" << endl;
     cout << "[NFA].. \t[2]" << endl;
-    cout << "[CFG].. \t[3]" << endl;
+    cout << "[PDA].. \t[3]" << endl;
+    cout << "[CFG].. \t[4]" << endl;
     cout << "[EXIT].. \t[0]" << endl;
     
     int m;
@@ -119,9 +121,13 @@ int main(int argc, const char * argv[]) {
             runNFA(argv);
             break;
         }
-        case 3://3 CFG
+        case 3://3 PDA
         {
-            runCFG(argv);
+            runPDA(argv);
+            break;
+        }
+        case 4://4 CFG
+        {
             break;
         }
         default:
