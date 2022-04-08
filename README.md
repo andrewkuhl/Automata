@@ -4,6 +4,6 @@
 ### [NFA]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [NFA DIR](Automata/NFA) ]
 ### [PDA]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [PDA DIR](Automata/PDA) ]
 ### [CFG]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [CFG DIR](Automata/CFG) ]
-<br>
+</br>
 ## Running
  ```./Automata <MACHINE_SPEC_PATH> <INPUT_PATH> ```
