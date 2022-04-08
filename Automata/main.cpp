@@ -157,7 +157,7 @@ int main(int argc, const char * argv[]) {
         {
             break;
         }
-        case 5://5 TM
+        case 5://5 DTM
         {
             runDTM(argv);
             break;

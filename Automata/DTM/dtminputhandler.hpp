@@ -15,7 +15,7 @@
 using namespace std;
 
 struct DTMTransition{ //transition obj
-    string Qs, Qf, e, popping, pushing;
+    string Qs, Qf, read, write, direction;
 };
 
 class DTMInputHandler {

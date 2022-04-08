@@ -52,12 +52,20 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "../../../Automata/PDA/machspec.txt"
+            argument = "../../../Automata/DTM/machspec.txt"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "../../../Automata/PDA/input.txt"
+            argument = "../../../Automata/DTM/input.txt"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "../../../Automata/PDA/machspec.txt"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "../../../Automata/PDA/input.txt"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "../../../Automata/NFA/machspec.txt"

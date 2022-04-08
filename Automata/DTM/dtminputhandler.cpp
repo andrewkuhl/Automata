@@ -62,28 +62,25 @@ void DTMInputHandler::getMS()
     }
     
     cout << ".";
-    vector<string> tmp;
-    ms >> c;
+    ms >> c; //d{
     do
     {
-        ms >> c;
-        if(c!="->")
+        DTMTransition t;
+        ms >> t.Qs; //Qs
+        ms >> t.Qf; //Qf
+        ms >> t.read; //read
+        ms >> c; //arrow
+        ms >> c; //write or ,
+        if(c == ",")
+            t.write = t.read;//write what u read
+        else
         {
-            if(c!= "," && c != "}")
-            {
-                tmp.push_back(c);
-            }
-            else{
-                DTMTransition t;
-                t.Qs = tmp.at(0);
-                t.Qf = tmp.at(1);
-                t.e = tmp.at(2);
-                t.popping = tmp.at(3);
-                t.pushing = tmp.at(4);
-                d_.push_back(t); //load d
-                tmp.clear();
-            }
+            t.write = c;//write
+            ms >> c;//,
         }
+        ms >> t.direction;
+        ms >> c; // ; or }
+        d_.push_back(t);
     }while(c != "}");
     
     cout << ".";
