@@ -6,8 +6,10 @@
 ### R : finite set of rules, variable = string of terminals
 ### S : is the start variable
 
+<br>
 
 ## Not Implemented Yet
+
 # Machine Specification File e.g.
 ```
 S -> A | B
