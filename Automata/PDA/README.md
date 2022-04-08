@@ -12,21 +12,19 @@
 ```
 Q{ q1 q2 q3 q4 }
 E{ 0 1 }
+G{ 0 1 $ }
 d{
-q1 0 q1 ,
-q1 1 q1 ,
-q1 1 q2 ,
-q2 0 q3 ,
-q2 eps q3 ,
-q3 1 q4 ,
-q4 1 q4 ,
-q4 0 q4 
+q1 q2 eps eps -> $ ,
+q2 q2 0 eps -> 0 ,
+q2 q3 1 0 -> eps ,
+q3 q3 1 0 -> eps ,
+q3 q4 eps $ -> eps ,
 }
 q0{ q1 }
-F{ q4 }
+F{ q1 q4 }
 ```
 
 # Input File e.g.
 ```
-input{ 0 0 1 1 0 0 1 }
+input{ 0 0 0 0 0 0 1 1 1 1 1 1 }
 ```
