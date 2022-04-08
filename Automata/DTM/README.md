@@ -7,7 +7,7 @@
 ### d : Q x G &rarr; Q x G x {left,right} is transition function
 ### q0 in Q: is the start state
 ### q<sub>accept</sub> in Q: is the accept state
-### q<sub>reject</sub> in Q: is the final state
+### q<sub>reject</sub> in Q: is the reject state
 
 <br>
 
