@@ -6,7 +6,9 @@
 ### d : Q x E &rarr; Q is transition function
 ### q0: is the start state
 ### F in Q: is the set of final states
+
 <br>
+
 ## Machine Specification File e.g.
 ```
 Q{ q1 q2 q3 }
