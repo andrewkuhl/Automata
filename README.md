@@ -5,4 +5,5 @@
 ### [PDA]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [PDA DIR](Automata/PDA) ]
 ### [CFG]..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [CFG DIR](Automata/CFG) ]
 
-
+## Running
+```./Automata "../../../<machine>/machspec.txt" "../../../<machine>/input.txt" 
