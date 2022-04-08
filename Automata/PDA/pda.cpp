@@ -174,181 +174,83 @@ bool PDA::machine(string currState_,
          vector<string> input_,
          vector<PDATransition> transitions_, vector<string> stack_)
 {
-    
     string nextState = "";
+    for(int i = 0; i < controller->d.size(); i++)
+    {//checking for epsilon transition on current state
+        PDATransition tmp = controller->d.at(i);
+        if(tmp.Qs == currState_ && tmp.e == "eps")
+        {
+            //start thread on found transition
+            //return true if true
+            
+            transitions_.push_back(tmp);
+            //create thread that runs compute( nextState, input, previous transitions, stack)
+            future<bool> thread = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+            if(thread.get())
+                return true; //return output
+            else
+            {
+                transitions_.pop_back();
+            }
+        }
+    }
     while(!input_.empty()) //while input isnt empty ""
     {
         string in = "";
-        
-        for(int i = 0; i < controller->d.size(); i++)//checking for epsilon
-        {
-            PDATransition tmp = controller->d.at(i);
-            if(tmp.Qs == currState_ && tmp.e == "eps")
-            {
-                //start a thread on transition eps
-                transitions_.push_back(tmp);
-                
-                //add stack action
-                if(tmp.popping != "eps")
-                {
-                    if(tmp.pushing != "eps")
-                    {
-                        if(!stack_.empty() && tmp.popping == stack_.back())
-                        {
-                            string popped = stack_.back();
-                            stack_.pop_back();
-                            stack_.push_back(tmp.pushing);
-                            
-                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                            if(t.get())
-                                return true; //if it accepted return true;
-                            
-                            stack_.pop_back();
-                            stack_.push_back(popped);
-                        }
-                    }
-                    else
-                    {
-                        if(!stack_.empty() && tmp.popping == stack_.back())
-                        {
-                            string popped = stack_.back();
-                            stack_.pop_back();
-                            
-                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                            if(t.get())
-                                return true; //if it accepted return true;
-                            
-                            stack_.push_back(popped);
-                        }
-                    }
-                }
-                else
-                {
-                    if(tmp.pushing != "eps")
-                    {
-                        stack_.push_back(tmp.pushing);
-                        
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        
-                        stack_.pop_back();
-                    }
-                    else
-                    {
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                    }
-                }
-                
-                
-                transitions_.pop_back();
-                
-            }//else continue
-        }
-        
         in = input_.at(0);
-        cout << in << endl;
         input_.erase(input_.begin());
-        bool tran = false;
-        vector<PDATransition> transvec;
-        for(int i = 0; i < controller->d.size(); i++) //checks transition on
-        {
+        
+        vector<PDATransition>temptrans;
+        bool transition = false;
+        for(int i = 0; i < controller->d.size(); i++)
+        {//checking for transition on current state and input
             PDATransition tmp = controller->d.at(i);
-            if(tmp.Qs == currState_ && tmp.e == in) //current state and input
+            if(tmp.Qs == currState_ && tmp.e == in)
             {
-                cout << "transition" << endl;
-                tran = true; //if theres a transition
-                transvec.push_back(tmp);
-                
+                //add transition to list set transition true
+                transition = true;
+                temptrans.push_back(tmp);
             }
         }
         
-        if(tran)
+        //if transition = true then transition
+        //else return false no transition on input
+        if(transition)
         {
-            
-            for(int k = 0; k < transvec.size(); k++)
+            for(int k = 0; k < temptrans.size(); k++)
             {
+                PDATransition tmp = temptrans.at(k);
+                //start thread on found transition
+                //return true if true
                 
-                PDATransition tmp = controller->d.at(k);
                 transitions_.push_back(tmp);
-                
-                //add stack action
-                if(tmp.popping != "eps")
-                {
-                    if(tmp.pushing != "eps")
-                    {
-                        if(!stack_.empty() && tmp.popping == stack_.back())
-                        {
-                            string popped = stack_.back();
-                            stack_.pop_back();
-                            stack_.push_back(tmp.pushing);
-                            
-                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                            if(t.get())
-                                return true; //if it accepted return true;
-                            
-                            stack_.pop_back();
-                            stack_.push_back(popped);
-                        }
-                    }
-                    else
-                    {
-                        if(!stack_.empty() && tmp.popping == stack_.back())
-                        {
-                            string popped = stack_.back();
-                            stack_.pop_back();
-                            
-                            future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                            if(t.get())
-                                return true; //if it accepted return true;
-                            
-                            stack_.push_back(popped);
-                        }
-                    }
-                }
+                //create thread that runs compute( nextState, input, previous transitions, stack)
+                future<bool> thread = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
+                if(thread.get())
+                    return true; //return output
                 else
                 {
-                    if(tmp.pushing != "eps")
-                    {
-                        stack_.push_back(tmp.pushing);
-                        
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                        
-                        stack_.pop_back();
-                    }
-                    else
-                    {
-                        future<bool> t = async(launch::async, &PDA::machine, this,  tmp.Qf, input_, transitions_, stack_);
-                        if(t.get())
-                            return true; //if it accepted return true;
-                    }
+                    transitions_.pop_back();
                 }
-                transitions_.pop_back();
             }
-            
         }
         else
         {
-            in = ""; //else reject
             return false;
         }
-    }//end while
-    
+        
+    }//end while input ! empty
     for(int i = 0; i < controller->F.size(); i++)
     {
-        if(currState_ == controller->F.at(i))
+        if(controller->F.at(i) == currState_)
         {
             for(int j = 0; j < transitions_.size(); j++)
             {
-                cout << "[PDA]: TRANSITION: " << transitions_.at(j).Qs << " " << transitions_.at(j).e << " -> " << transitions_.at(j).Qf <<endl;
-                cout << "[PDA]: .." << endl;
+                PDATransition tmp = transitions_.at(j);
+                cout << "[Machine]: F{ " << tmp.Qs << " " << tmp.Qf << " " << tmp.e << " " << tmp.popping << " -> " << tmp.pushing << " }" << endl;
             }
-            return true;  //if end state is final accept
+            return true;
         }
     }
-    return false; //else reject
+    return false;
 }
