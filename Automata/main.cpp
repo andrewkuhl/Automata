@@ -11,6 +11,7 @@
 #include "nfa.hpp"
 #include "pda.hpp"
 #include "cfg.hpp"
+#include "tm.hpp"
 
 using namespace std;
 
@@ -90,6 +91,31 @@ void runPDA(const char * argv[]){
     }
 }
 
+void runTM(const char * argv[]){
+    cout << "[Main]: initializing TM.." << endl;
+    
+    TM *tm = new TM(argv); //TM constructor
+    
+    cin.clear();
+    cout << "[Main]: run TM? [y/n]  ";
+    string inp;
+    cin >> inp;
+    if(inp == "y")
+    {
+        do{
+            cout << "[Main]: running TM.." << endl;
+            if(tm->run())// TM run()
+                cout << "[Main]: TM accepts on input" <<endl;//if run returns true accept
+            else
+                cout << "[Main]: TM rejects on input" <<endl;//else reject
+            
+            cout << "[Main]: .." << endl;
+            cout << "[Main]: run TM again? [y/n]  ";
+            cin >> inp;
+        }while(inp == "y");
+    }
+}
+
 int main(int argc, const char * argv[]) {
 
     
@@ -100,11 +126,12 @@ int main(int argc, const char * argv[]) {
     }
     
     cout << "[Main]: choose machine.." << endl; //machine choice input
-    cout << "[DFA].. \t[1]" << endl;
-    cout << "[NFA].. \t[2]" << endl;
-    cout << "[PDA].. \t[3]" << endl;
-    cout << "[CFG].. \t[4]" << endl;
-    cout << "[EXIT].. \t[0]" << endl;
+    cout << "[1][DFA].." << endl;
+    cout << "[2][NFA].." << endl;
+    cout << "[3][PDA].." << endl;
+    cout << "[4][CFG].." << endl;
+    cout << "[5][TM].." << endl;
+    cout << "[0][EXIT]" << endl;
     
     int m;
     cin >> m;
@@ -129,6 +156,15 @@ int main(int argc, const char * argv[]) {
         case 4://4 CFG
         {
             break;
+        }
+        case 5://5 TM
+        {
+            runTM(argv);
+            break;
+        }
+        case 0://exit
+        {
+            return 0;
         }
         default:
             cout << "[Main][Error]: wrong argument" << endl; //wrong arg
