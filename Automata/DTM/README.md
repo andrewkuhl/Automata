@@ -88,5 +88,36 @@ input{ 0 0 0 0 }
 [DTM]: qaccept: {[q6]}
 [DTM]: qreject: {[q7]}
 [DTM]: ready..
-[Main]: run DTM? [y/n]  Program ended with exit code: 9
+[Main]: run DTM? [y/n]  y
+[Main]: running DTM..
+[DTM]: running...
+[DTM]: ..
+[DTM]: initializing Tape..
+[Tape]: initialized
+[DTM]: computing..
+[DTM]: ..
+[q1, q2, 0 -> blank, R], 
+[q2, q3, 0 -> x, R], 
+[q3, q4, 0 -> 0, R], 
+[q4, q3, 0 -> x, R], 
+[q3, q5, blank -> blank, L], 
+[q5, q5, x -> x, L], 
+[q5, q5, 0 -> 0, L], 
+[q5, q5, x -> x, L], 
+[q5, q2, blank -> blank, R], 
+[q2, q2, x -> x, R], 
+[q2, q3, 0 -> x, R], 
+[q3, q3, x -> x, R], 
+[q3, q5, blank -> blank, L], 
+[q5, q5, x -> x, L], 
+[q5, q5, x -> x, L], 
+[q5, q5, x -> x, L], 
+[q5, q2, blank -> blank, R], 
+[q2, q2, x -> x, R], 
+[q2, q2, x -> x, R], 
+[q2, q2, x -> x, R], 
+[q2, q6, blank -> blank, R]
+[Main]: DTM accepts on input
+[Main]: ..
+[Main]: run DTM again? [y/n]  n
 ```
