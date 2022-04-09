@@ -16,9 +16,7 @@ DTM::DTM(const char * argv[]) //constructor
     cout << "[DTM]: initializing Controller.." <<endl;
     
     controller = new Controller(); //alloc controller
-    cout << "[DTM]: initializing Tape.." <<endl;
     
-    tape = new Tape(); //alloc tape
     
     cout << "[DTM]: initializing InputHandler.." <<endl;
     
@@ -166,24 +164,56 @@ DTM::DTM(const char * argv[]) //constructor
 DTM::~DTM() //destructor
 {
     delete controller;
+    delete tape;
     delete inhandler;
 }
 bool DTM::run()
 {
-    cout << "[DTM]: running" << endl;
+    cout << "[DTM]: running";
     inhandler->getINF(); //loading input file
-    cout << "[DTM]: .." << endl;
+    cout << "\n[DTM]: .." << endl;
     
-    string in = inhandler->getInput(); //get input
+    cout << "[DTM]: initializing Tape.." <<endl;
+    if(tape)
+        delete tape;
+    tape = new Tape(); //alloc tape
     
-    //create thread that runs compute( q0, input, transitions)
-    future<bool> thread = async(launch::async, &DTM::machine, this,  controller->q0, inhandler->input, vector<DTMTransition>(), vector<string>());
+    string in = inhandler->getInput(); //get input{
+    vector<string> input_ = inhandler->input;
+    while(!input_.empty())
+    {
+        tape->newSymbol(input_.at(0));
+        input_.erase(input_.begin());
+    }
+    //create thread that runs compute( q0, transitions, tape)
+    future<bool> thread = async(launch::async, &DTM::machine, this,  controller->q0, vector<DTMTransition>(), tape);
     
     return thread.get(); //return output
 }
 bool DTM::machine(string currState_,
-         vector<string> input_,
-         vector<DTMTransition> transitions_, vector<string> stack_)
+         vector<DTMTransition> transitions_, Tape* tape_)
 {
+    tape_->print(tape_->head);
+//    while(currState_ != controller->qaccept
+//          or currState_ != controller->qreject)
+//    {
+//
+//        bool trans = false;
+//        for(int i = 0; i < controller->d.size(); i++)
+//        {
+//            DTMTransition tmp;
+//            if(tmp.Qs == currState_ and tmp.read == tape_->read())
+//            {
+//                trans = true;
+//                tape_->write(tmp.write);
+//                tape_->move(tmp.direction);
+//                currState_ = tmp.Qf;
+//
+//            }
+//        }
+//        if(!trans)
+//            return false;
+//
+//    }
     return false;
 }

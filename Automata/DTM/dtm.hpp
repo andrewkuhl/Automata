@@ -26,8 +26,7 @@ class DTM {
         tapeSymbol* last;
         tapeSymbol* curr;
         
-        Tape(){head = new tapeSymbol();last = head; curr = head;
-            cout<<"[Tape]: initialized"<<endl;}
+        Tape(){cout<<"[Tape]: initialized"<<endl;head = nullptr; last = nullptr; curr = nullptr;}
         ~Tape(){deleteTape(head);}
         void deleteTape(tapeSymbol* headptr){
             if(headptr == nullptr)
@@ -36,11 +35,21 @@ class DTM {
             delete headptr;
         }
         void newSymbol(string a){
-            tapeSymbol* newsym = new tapeSymbol();
-            newsym->e = a;
-            newsym->left = last;
-            last->right = newsym;
-            last = last->right;
+            if(last!=nullptr){
+                tapeSymbol* newsym = new tapeSymbol();
+                newsym->e = a;
+                newsym->left = last;
+                last->right = newsym;
+                last = last->right;
+            }
+            else
+            {
+                tapeSymbol* newsym = new tapeSymbol();
+                newsym->e = a;
+                last = newsym;
+                curr = newsym;
+                head = newsym;
+            }
         }
         string read(){return curr->e;}
         void write(string e_){curr->e = e_;}
@@ -55,6 +64,16 @@ class DTM {
                 curr = curr->right;
             }
         }
+        void print(tapeSymbol* printing){
+            if (printing==nullptr)
+            {
+                cout << "\n";
+                return;
+            }
+            cout << printing->e << " ";
+            print(printing->right);
+        }
+
         
     }*tape;
     
@@ -80,8 +99,7 @@ public:
     ~DTM();
     bool run(); //run function
     bool machine(string currState_,
-             vector<string> input_,
-             vector<DTMTransition> transitions_, vector<string> stack_);
+                 vector<DTMTransition> transitions_, Tape* tape_);
 };
 
 #endif /* dtm_hpp */

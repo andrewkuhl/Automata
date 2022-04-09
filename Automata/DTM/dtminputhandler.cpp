@@ -104,6 +104,7 @@ void DTMInputHandler::getMS()
 
 void DTMInputHandler::getINF()
 {
+    input.clear();
     cout << ".";
     
     inf.open(args[2]); //open file to ptr
