@@ -116,7 +116,7 @@ input{ 0 0 0 0 }
 [Machine]: [q2, q2, x -> x, R], 
 [Machine]: [q2, q2, x -> x, R], 
 [Machine]: [q2, q2, x -> x, R], 
-[Machine]: [q2, q6, blank -> blank, R]
+[Machine]: [q2, q6, blank -> blank, R][ACCEPTING]
 [Main]: DTM accepts on input
 [Main]: ..
 [Main]: run DTM again? [y/n]  n
