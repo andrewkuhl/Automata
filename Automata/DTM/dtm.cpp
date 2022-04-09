@@ -177,7 +177,8 @@ bool DTM::run()
     if(tape)
         delete tape;
     tape = new Tape(); //alloc tape
-    
+    cout << "[DTM]: computing.." << endl;
+    cout << "[DTM]: .." << endl;
     string in = inhandler->getInput(); //get input{
     vector<string> input_ = inhandler->input;
     while(!input_.empty())
@@ -193,27 +194,43 @@ bool DTM::run()
 bool DTM::machine(string currState_,
          vector<DTMTransition> transitions_, Tape* tape_)
 {
-    tape_->print(tape_->head);
-//    while(currState_ != controller->qaccept
-//          or currState_ != controller->qreject)
-//    {
-//
-//        bool trans = false;
-//        for(int i = 0; i < controller->d.size(); i++)
-//        {
-//            DTMTransition tmp;
-//            if(tmp.Qs == currState_ and tmp.read == tape_->read())
-//            {
-//                trans = true;
-//                tape_->write(tmp.write);
-//                tape_->move(tmp.direction);
-//                currState_ = tmp.Qf;
-//
-//            }
-//        }
-//        if(!trans)
-//            return false;
-//
-//    }
-    return false;
+    while(true)
+    {
+        
+        if(currState_ == controller->qaccept)
+        {
+            for(int i = 0; i < transitions_.size(); i++) //print d
+            {
+                cout << "[" << transitions_.at(i).Qs << ", ";
+                cout << transitions_.at(i).Qf << ", ";
+                cout << transitions_.at(i).read << " -> ";
+                cout << transitions_.at(i).write << ", ";
+                cout << transitions_.at(i).direction << "]";
+                if(i != transitions_.size()-1)
+                    cout << ", ";
+                cout << endl;
+            }
+            return true;
+        }
+        else if (currState_ == controller->qreject)
+        {
+            return false;
+        }
+        bool trans = false;
+        for(int i = 0; i < controller->d.size(); i++)
+        {
+            DTMTransition tmp = controller->d.at(i);
+            if(tmp.Qs == currState_ and tmp.read == tape_->read())
+            {
+                trans = true;
+                tape_->write(tmp.write);
+                tape_->move(tmp.direction);
+                currState_ = tmp.Qf;
+                transitions_.push_back(tmp);
+            }
+        }
+        if(!trans)
+            return false;
+
+    }
 }
