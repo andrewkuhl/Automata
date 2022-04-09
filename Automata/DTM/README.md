@@ -96,28 +96,29 @@ input{ 0 0 0 0 }
 [Tape]: initialized
 [DTM]: computing..
 [DTM]: ..
-[q1, q2, 0 -> blank, R], 
-[q2, q3, 0 -> x, R], 
-[q3, q4, 0 -> 0, R], 
-[q4, q3, 0 -> x, R], 
-[q3, q5, blank -> blank, L], 
-[q5, q5, x -> x, L], 
-[q5, q5, 0 -> 0, L], 
-[q5, q5, x -> x, L], 
-[q5, q2, blank -> blank, R], 
-[q2, q2, x -> x, R], 
-[q2, q3, 0 -> x, R], 
-[q3, q3, x -> x, R], 
-[q3, q5, blank -> blank, L], 
-[q5, q5, x -> x, L], 
-[q5, q5, x -> x, L], 
-[q5, q5, x -> x, L], 
-[q5, q2, blank -> blank, R], 
-[q2, q2, x -> x, R], 
-[q2, q2, x -> x, R], 
-[q2, q2, x -> x, R], 
-[q2, q6, blank -> blank, R]
+[Machine]: [q1, q2, 0 -> blank, R], 
+[Machine]: [q2, q3, 0 -> x, R], 
+[Machine]: [q3, q4, 0 -> 0, R], 
+[Machine]: [q4, q3, 0 -> x, R], 
+[Machine]: [q3, q5, blank -> blank, L], 
+[Machine]: [q5, q5, x -> x, L], 
+[Machine]: [q5, q5, 0 -> 0, L], 
+[Machine]: [q5, q5, x -> x, L], 
+[Machine]: [q5, q2, blank -> blank, R], 
+[Machine]: [q2, q2, x -> x, R], 
+[Machine]: [q2, q3, 0 -> x, R], 
+[Machine]: [q3, q3, x -> x, R], 
+[Machine]: [q3, q5, blank -> blank, L], 
+[Machine]: [q5, q5, x -> x, L], 
+[Machine]: [q5, q5, x -> x, L], 
+[Machine]: [q5, q5, x -> x, L], 
+[Machine]: [q5, q2, blank -> blank, R], 
+[Machine]: [q2, q2, x -> x, R], 
+[Machine]: [q2, q2, x -> x, R], 
+[Machine]: [q2, q2, x -> x, R], 
+[Machine]: [q2, q6, blank -> blank, R]
 [Main]: DTM accepts on input
 [Main]: ..
 [Main]: run DTM again? [y/n]  n
+Program ended with exit code: 0
 ```
